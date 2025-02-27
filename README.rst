@@ -13,9 +13,6 @@ Model-driven motion correction for medical imaging
 - **Source code:** https://github.com/QIB-Sheffield/mdreg
 
 
-*Note:* mdreg is under construction. At this stage, the API may still change 
-and features may be deprecated without warning.
-
 
 Installation
 ------------
@@ -37,7 +34,7 @@ Typical usage
 
     # Configure the signal model fit
     fit_image = {
-        'func': mdreg.spgr_vfa_lin,     # VFA signal model
+        'func': mdreg.fit_spgr_vfa_lin,     # VFA signal model
         'FA': data['FA'],               # Flip angle in degress    
         'progress_bar': True,           # Show a progress bar
     }
@@ -57,7 +54,7 @@ Typical usage
     )
 
     # Visualize the results
-    anim = mdreg.animation(
+    anim = mdreg.plot.animation(
         coreg, 
         title = 'Motion corrected VFA', 
         'interval' : 500,                   # Time between animation frames in ms

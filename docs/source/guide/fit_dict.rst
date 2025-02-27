@@ -1,7 +1,7 @@
 .. _fit_dict:
 
 *****************************
-Fitting options
+Signal model fitting
 *****************************
 
 This section provides information about the arguments required for the 

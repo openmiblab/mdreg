@@ -29,6 +29,7 @@ extensions = [
     'sphinx.ext.autosummary', # generates function/method/attribute summary lists
     'sphinx.ext.viewcode', # viewing source code
     'sphinx.ext.intersphinx', # generate links to the documentation of objects in external projects
+    'sphinx.ext.mathjax',  # Enables LaTeX rendering
     'autodocsumm',
     'myst_parser', # parser for markdown language
     'sphinx_copybutton', # copy button for code blocks
@@ -37,6 +38,7 @@ extensions = [
     'sphinx_gallery.gen_gallery', # thumbnail galleries
     'matplotlib.sphinxext.plot_directive', # to show plots in docstrings
     'sphinx_exec_code', # To execute code in rst files.
+
 ]
 
 

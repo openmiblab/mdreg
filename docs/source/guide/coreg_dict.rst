@@ -9,20 +9,57 @@ passed to `mdreg.fit` to control the coregistration process. These arguments
 are provided as a dictionary referred to as `fit_coreg` in the `mdreg.fit` 
 function.
 
-By default, `mdreg` uses the `elastix` package for coregistration, with default
-parameters. The options allow the user to control the coregistration package 
-used, and the optional parameters which can be controlled within the 
-different packages.
-
-
-Elastix
+skimage
 -------
 
-Elastix is one of the coregistration engines available to perform 
+If the `fit_coreg` dictionary is not provided in the call to `mdreg.fit`, 
+then `mdreg` uses the `skimage` package for coregistration as default - 
+specifically the function `skimage.registration.optical_flow_tvl1` with 
+default parameters. 
+
+This behaviour can be modified by providing additional items to the 
+`fit_coreg` dictionary. All keyword arguments accepted by the function 
+`mdreg.skimage.coreg_series` can be provided. 
+
+For instance, the following call to `mdreg.fit` will show a progress bar 
+during coregistration and applies the registration with the `attachment` 
+parameter set to a value of 30 instead of the default 15:
+
+.. code-block:: python
+
+    coreg, _, _, _ = mdreg.fit(
+        array, 
+        fit_coreg = {
+          'progress_bar': True,
+          'attachment': 30,
+        },
+    )
+
+
+elastix
+-------
+
+Elastix is an alternative coregistration engine to perform 
 the coregistration components in `mdreg`. For consistent usage  
 across different coregistration engines, `mdreg` contains pythonic wrappers 
-for the core functionality available in elastix, but the functionality is 
+for the core functions in elastix, but the functionality is 
 not otherwise modified. 
+
+To run coregistration with `elastix`, the package needs to be specified along 
+with any keyword arguments accepted by `mdreg.elastix.coreg_series`. For 
+instance the following call will run elastix with a grid spacing of 50mm 
+between the control points:
+
+.. code-block:: python
+
+    coreg, _, _, _ = mdreg.fit(
+        array, 
+        fit_coreg = {
+          'package': 'elastix',
+          'spacing': [1.25, 1.25, 3.0],
+          'FinalGridSpacingInPhysicalUnits': 50.0,
+        },
+    )
 
 We refer to the original 
 `elastix pages <https://github.com/SuperElastix>`_ 
@@ -46,3 +83,26 @@ created by Kasper Marstal:
   "SimpleElastix: A user-friendly, multi-lingual library for medical image 
   registration", International Workshop on Biomedical Image Registration 
   (WBIR), Las Vegas, Nevada, USA, 2016.
+
+
+antspyx
+-------
+
+The final registration package wrapped in `mdreg` is *ANTs* through the 
+python package `antspyx`. As for elastix, in order to use *ANTs* for 
+coregistration it suffices to provide the package name and any keyword 
+arguments accepted by `mdreg.ants.coreg_series`:
+
+.. code-block:: python
+
+    coreg, _, _, _ = mdreg.fit(
+        array, 
+        fit_coreg={
+            'package': 'ants',
+            'type_of_transform': 'SyNOnly',
+        },
+    )
+
+This will call the function 
+`ants.registration <https://antspy.readthedocs.io/en/latest/registration.html>`_ 
+to coregister the dynamics.

@@ -50,7 +50,7 @@ def test_image_model():
 
     coreg, defo, fit, pars = mdreg.fit(moving,
         fit_image = {
-            'func': mdreg.abs_exp_recovery_2p,
+            'func': mdreg.fit_abs_exp_recovery_2p,
             'TI': np.array(data['TI'])/1000,
         },
         fit_coreg = {
@@ -67,7 +67,7 @@ def test_coreg_model():
     data = mdreg.fetch('MOLLI')
     array = data['array'][:,:,0,:]
     molli = {
-        'func': mdreg.abs_exp_recovery_2p,
+        'func': mdreg.fit_abs_exp_recovery_2p,
         'TI': np.array(data['TI'])/1000,
         'progress_bar': True,
     }
@@ -81,7 +81,7 @@ def test_vfa_lin():
         'VFA',
     )
     vfa_fit = {
-        'func': mdreg.spgr_vfa_lin,     # VFA signal model
+        'func': mdreg.fit_spgr_vfa_lin,     # VFA signal model
         'FA': data['FA'],               # Flip angle in degress 
         'progress_bar': True,   
     }
@@ -102,7 +102,7 @@ def test_vfa_lin():
         'vmax' : np.percentile(data['array'],99),   # Maximum value of the colorbar
         'show' : True,                      # Display the animation on screen
     }
-    anim = mdreg.animation(
+    anim = mdreg.plot.animation(
         coreg, 
         title = 'Motion corrected', 
         **plot_settings,

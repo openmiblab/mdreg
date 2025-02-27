@@ -27,12 +27,8 @@ def test_abs_exp_recovery_2p():
     print('Testing model: abs_exp_recovery_2p')
 
     data = mdreg.fetch('MOLLI')
-    fit, pars = mdreg.abs_exp_recovery_2p(data['array'][:,:,0,:], TI=np.array(data['TI'])/1000)
+    fit, pars = mdreg.fit_abs_exp_recovery_2p(data['array'][:,:,0,:], TI=np.array(data['TI'])/1000)
     mdreg.plot.animation(fit, path=os.getcwd(), vmin=0, vmax=10000, show=True)
-
-    # data['array'] = fit.astype(np.int16)
-    # with open(os.path.join(os.getcwd(), 'MOLLIfit.pkl'), 'wb') as fp:
-    #     pickle.dump(data, fp, protocol=pickle.HIGHEST_PROTOCOL)
 
 
 
