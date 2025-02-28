@@ -23,7 +23,7 @@ import mdreg
 
 #%%
 # Load test data
-data = mdreg.fetch('MOLLI_small')
+data = mdreg.fetch('MOLLI')
 array = data['array'][:,:,0,:]
 
 # Throughout this example we use the same signal model:
@@ -103,7 +103,7 @@ coreg, fit, _, _ = mdreg.fit(
 )
 
 # Visualise the results
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 
 
 #%%
@@ -128,7 +128,7 @@ coreg, fit, _, _ = mdreg.fit(
 
 #%%
 # Looking at the results, this is not a great solution for these data.
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 
 
 # sphinx_gallery_start_ignore

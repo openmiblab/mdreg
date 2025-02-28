@@ -1,24 +1,29 @@
+.. _installation:
+
 ****************
 Installing mdreg
 ****************
 
-``mdreg`` can be installed using pip:
+`mdreg` may often be used inside other packages or more complex pipelines, 
+and therefore the default installation is lightweight containing only 
+essential dependencies. 
+
+This core version of ``mdreg`` can be installed using pip:
 
 .. code-block:: console
 
    pip install mdreg
 
-This installs a core lightweight version which does not include the plot 
-module and only offers `skimage` as a package for coregistration. 
-
-To install the complete version with all possible options included, use:
+This does not include the plot module and only offers `skimage` as a package 
+for coregistration. To install the complete version with all possible 
+options included, use:
 
 .. code-block:: console
 
    pip install mdreg[complete]
 
 This installs plotting libraries as well as `antspyx` and `itk-elastix` for 
-coregistration. Note ``itk-elastix`` is a heavy package (nearly 800 MB).
+coregistration. Note ``itk-elastix`` is a heavy package (nearly 800MB).
 
 More fine-grained options are available too:
 

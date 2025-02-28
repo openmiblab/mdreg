@@ -17,7 +17,7 @@ import mdreg
 #%%
 # fetch test data
 
-data = mdreg.fetch('MOLLI_small')
+data = mdreg.fetch('MOLLI')
 
 # We will consider the slice z=0 of the data array:
 array = data['array'][:,:,0,:]
@@ -33,7 +33,7 @@ array = data['array'][:,:,0,:]
 coreg, fit, defo, pars = mdreg.fit(array)
 
 # And visualise the results
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
 
 
 # %%
@@ -58,7 +58,7 @@ coreg, fit, defo, pars = mdreg.fit(
     },
 )
 # And visualise the results
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
 
 #%%
 # Still not a great motion correction (right). The model fit (left) shows that 
@@ -76,7 +76,7 @@ coreg, fit, defo, pars = mdreg.fit(
         'p0': [1, 0, 0],
     },
 )
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
 
 #%%
 # This now captures the signal changes better, leading to an improved motion 
@@ -94,7 +94,7 @@ coreg, fit, defo, pars = mdreg.fit(
         'p0': [1, 0, 0, 0, 0],
     },
 )
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
 
 # %%
 # This now appears to have made it worse: there is more motion again in the 
@@ -121,7 +121,7 @@ coreg, fit, defo, pars = mdreg.fit(
         'func_init':mdreg.abs_exp_recovery_2p_init,
     },
 )
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
 
 #%%
 # This show the best result so far, despite the model only having 2 free 
@@ -140,7 +140,7 @@ coreg, fit, defo, pars = mdreg.fit(
         'attachment': 30,
     },
 )
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
 
 # sphinx_gallery_start_ignore
 

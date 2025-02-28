@@ -12,8 +12,8 @@ skimage
    :template: autosummary.rst
 
     coreg
-    coreg_series
     transform
+    coreg_series
     transform_series
     defaults
 
@@ -29,8 +29,8 @@ ants
    :template: autosummary.rst
 
     coreg
-    coreg_series
     transform
+    coreg_series
     transform_series
     defaults
 
@@ -46,7 +46,7 @@ elastix
    :template: autosummary.rst
 
     coreg
-    coreg_series
     transform
+    coreg_series
     transform_series
     defaults

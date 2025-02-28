@@ -20,7 +20,7 @@ data = mdreg.fetch('MOLLI')
 array = data['array']  
 
 # Visualise the motion
-mdreg.plot.animation(array, vmin=0, vmax=1e4)
+anim = mdreg.plot.animation(array, vmin=0, vmax=1e4)
 
 #%%
 # Perform slice-by-slice motion correction

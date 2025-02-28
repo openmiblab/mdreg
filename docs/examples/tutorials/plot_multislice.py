@@ -19,7 +19,7 @@ import mdreg
 
 #%%
 # Fetch the multi-slice MOLLI dataset
-data = mdreg.fetch('MOLLI_small')
+data = mdreg.fetch('MOLLI')
 
 # Get the relevant variables (3D data)
 array = data['array'] 
@@ -50,7 +50,7 @@ print(f'The deformation field has {defo.shape[-1]} components.')
 
 #%%
 # Visualise the results
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 
 #%%
 # Different options per slice

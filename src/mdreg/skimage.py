@@ -137,7 +137,7 @@ def coreg(
     ) -> Tuple[np.ndarray, np.ndarray]:
 
     """
-    Coregister two arrays
+    Coregister two 2D images or 3D volumes.
     
     Parameters
     ----------

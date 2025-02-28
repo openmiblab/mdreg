@@ -116,11 +116,13 @@ def coreg_series(
         defo = None
 
     # This is a very slow step so needs to be done outside the loop
-    print('Building elastix parameter object..')
+    if progress_bar:
+        print('Building elastix parameter object..')
     p_obj = _params_obj(method, **params) 
 
     if parallel:
-        print('Coregistering..')
+        if progress_bar:
+            print('Coregistering..')
         tasks = []
         for t in range(moving.shape[-1]): 
             task_t = dask.delayed(_coreg_t)(
@@ -209,7 +211,7 @@ def coreg(
         **params,
     ):
     """
-    Coregister two arrays
+    Coregister two 2D images or 3D volumes.
     
     Parameters
     ----------

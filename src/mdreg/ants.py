@@ -195,7 +195,7 @@ def coreg(
         **kwargs,
     ):
     """
-    Coregister two volumes given as numpy arrays using ANTs.
+    Coregister two 2D images or 3D volumes.
 
     Args:
         moving (np.ndarray): The moving 2D or 3D image.

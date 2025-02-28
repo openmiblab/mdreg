@@ -6,6 +6,7 @@ Signal models
 
 .. currentmodule:: mdreg
 
+.. _signal-models:
 
 Signal models
 -------------
@@ -45,6 +46,8 @@ Estimate parameter values for single-pixel models from data.
    abs_exp_recovery_3p_init
    spgr_vfa_init
 
+
+.. _fit-funcs:
 
 Fitting signal models
 ---------------------
