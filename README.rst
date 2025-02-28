@@ -9,8 +9,8 @@ mdreg
 Model-driven motion correction for medical imaging
 --------------------------------------------------
 
-- **Documentation:** https://qib-sheffield.github.io/mdreg/
-- **Source code:** https://github.com/QIB-Sheffield/mdreg
+- **Documentation:** https://openmiblab.github.io/mdreg
+- **Source code:** https://github.com/openmiblab/mdreg
 
 
 

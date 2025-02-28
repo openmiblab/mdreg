@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 project = 'mdreg'
-copyright = '2024, mdreg maintainers'
+copyright = '2025, mdreg maintainers'
 author = 'mdreg maintainers'
 release = '0.4.4'
 
@@ -91,11 +91,11 @@ exclude_patterns = []
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
     'numpy': ('https://numpy.org/doc/stable/', None),
-    #'matplotlib': ('https://matplotlib.org/stable/', None),
+    'matplotlib': ('https://matplotlib.org/stable/', None),
     #'pydicom': ('https://pydicom.github.io/pydicom/stable/', None),
     #'nibabel': ('https://nipy.org/nibabel/', None),
     #'pandas': ('https://pandas.pydata.org/docs/', None),
-    #'skimage': ('https://scikit-image.org/docs/stable/', None),
+    'skimage': ('https://scikit-image.org/docs/stable/', None),
     "scipy": ('https://docs.scipy.org/doc/scipy/', None),
 }
 
@@ -113,7 +113,7 @@ always_document_param_types = True
 # The theme to use for HTML and HTML Help pages.  See the documentation for a list of builtin themes
 html_theme = 'pydata_sphinx_theme'
 html_theme_options = {
-    "github_url": "https://github.com/QIB-Sheffield/mdreg",
+    "github_url": "https://github.com/openmiblab/mdreg",
     "collapse_navigation": True,
     }
 

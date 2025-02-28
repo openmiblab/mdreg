@@ -47,8 +47,8 @@ keywords = ['python', "medical imaging", "motion correction", "registration"]
 requires-python = ">=3.6"
 
 [project.urls]
-"Homepage" = "https://qib-sheffield.github.io/mdreg/"
-"Source Code" = "https://github.com/QIB-Sheffield/mdreg"
+"Homepage" = "https://openmiblab.github.io/mdreg"
+"Source Code" = "https://github.com/openmiblab/mdreg"
 
 [tool.setuptools]
 # ...
