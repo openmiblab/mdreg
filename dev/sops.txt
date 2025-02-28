@@ -9,7 +9,7 @@ Clone mdreg package locally
 cd to mdreg top folder
 
 On windows:
->>> py -3 -m venv .venv           # create virtual environment
+>>> python3 -m venv .venv           # create virtual environment
 >>> .venv/Scripts/activate        # activate virtual environment
 
 To leave:

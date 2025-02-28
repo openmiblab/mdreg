@@ -9,3 +9,4 @@ scikit-image
 zarr
 dask
 antspyx
+requests
