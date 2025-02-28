@@ -15,6 +15,7 @@ dependencies = [
   "scikit-image",
   "zarr",
   "dask",
+  "requests",
 ]
 
 # optional information
