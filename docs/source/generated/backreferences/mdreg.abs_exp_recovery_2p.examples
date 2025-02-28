@@ -15,24 +15,45 @@ Examples using ``mdreg.abs_exp_recovery_2p``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="By default, dcmri uses free-form deformation implemented in the package  itk.elastix, which default settings for all configuration parameters. ">
+    <div class="sphx-glr-thumbcontainer" tooltip="By default mdreg performs 3D coregistration on 3D series, and 2D  coregistration on 2D series. In case the 3D series encodes a collection of  2D slices with gaps in between (multi-slice data), this may not be appropriate.">
 
 .. only:: html
 
-  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_getting_started_defo_thumb.gif
+  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_multislice_thumb.png
     :alt:
 
-  :ref:`sphx_glr_generated_examples_tutorials_plot_getting_started_defo.py`
+  :ref:`sphx_glr_generated_examples_tutorials_plot_multislice.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Customizing the coregistration</div>
+      <div class="sphx-glr-thumbnail-title">Multi-slice 2D registration</div>
     </div>
 
 
 .. only:: not html
 
- * :ref:`sphx_glr_generated_examples_tutorials_plot_getting_started_defo.py`
+ * :ref:`sphx_glr_generated_examples_tutorials_plot_multislice.py`
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Since mdreg performs model-driven motion correction, the choice of an  appropriate model is important to the result. We illustrate this here by coregistering a dataset with different models.">
+
+.. only:: html
+
+  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_model_selection_thumb.gif
+    :alt:
+
+  :ref:`sphx_glr_generated_examples_tutorials_plot_model_selection.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">The effect of model selection</div>
+    </div>
+
+
+.. only:: not html
+
+ * :ref:`sphx_glr_generated_examples_tutorials_plot_model_selection.py`
 
 .. thumbnail-parent-div-close
 

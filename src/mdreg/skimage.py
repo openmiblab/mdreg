@@ -1,18 +1,143 @@
-import os
-import multiprocessing
-import numpy as np
-from tqdm import tqdm
+from typing import Tuple, Union
 
+from tqdm import tqdm
+import numpy as np
+import zarr
+import dask
 from skimage.registration import optical_flow_tvl1
 from skimage.transform import warp as skiwarp
 
-from mdreg import utils
+from mdreg import io
 
 
-def coreg(moving:np.ndarray, fixed:np.ndarray, **kwargs):
+def defaults():
+    """Default parameters of the optical flow method
+
+    Returns:
+        dict: Default parameter values
+    """
+    return {
+        'attachment':15,
+        'tightness':0.3,
+        'num_warp':5,
+        'num_iter':10,
+        'tol':1e-4,
+        'prefilter':False,
+    }
+
+def coreg_series(
+        moving: Union[np.ndarray, zarr.Array], 
+        fixed: Union[np.ndarray, zarr.Array], 
+        parallel=True, 
+        progress_bar=False, 
+        path=None, 
+        name='coreg',
+        **kwargs,
+    ):
+    """
+    Coregister two series of 2D images or 3D volumes.
+
+    Parameters
+    ----------
+    moving : numpy.ndarray | zarr.Array
+        The moving image or volume, with dimensions (x,y,t) or (x,y,z,t). 
+    fixed : numpy.ndarray | zarr.Array
+        The fixed target image or volume, in the same dimensions as the 
+        moving image. 
+    parallel : bool
+        Set to True to parallelize the computations. Defaults to True.
+    progress_bar : bool
+        Show a progress bar during the computation. This keyword is ignored 
+        if parallel = True. Defaults to False.
+    path : str, optional
+        Path on disk where to save the results. If no path is provided, the 
+        results are not saved to disk. Defaults to None.
+    name : str, optional
+        For data that are saved on disk, provide an optional filename. This 
+        argument is ignored if no path is provided.
+    kwargs : dict
+        Any keyword argument accepted by `skimage.registration.optical_flow_tvl1`. 
+
+    Returns
+    -------
+    coreg : numpy.ndarray | zarr.Array
+        Coregistered series with the same dimensions as the moving image. 
+    defo : numpy.ndarray | zarr.Array
+        The deformation field with the same dimensions as *moving*, and one 
+        additional dimension for the components of the vector field. If 
+        *moving* has dimensions (x,y,t) and (x,y,z,t), then the deformation 
+        field will have dimensions (x,y,t,2) and (x,y,z,t,3), respectively. 
+        The displacement vectors are measured in voxel units. 
+    """
+    coreg = io._copy(moving, path, name)
+    defo = io._defo(moving, path, name=name+'_defo')
+
+    if parallel:
+        tasks = []
+        for t in range(moving.shape[-1]): 
+            task_t = dask.delayed(_coreg_t)(
+                t, moving, fixed, coreg, defo, **kwargs,
+            )
+            tasks.append(task_t)
+        dask.compute(*tasks)
+    else:
+        for t in tqdm(
+                range(moving.shape[-1]), 
+                desc='Coregistering series', 
+                disable=not progress_bar,
+            ): 
+            _coreg_t(t, moving, fixed, coreg, defo, **kwargs)
+    
+    return coreg, defo
+
+
+def _coreg_t(t, moving, fixed, deformed, deformation, **kwargs):
+    deformed[...,t], deformation[...,t,:] = coreg(
+        moving[...,t], fixed[...,t], **kwargs,
+    )
+
+def transform_series(
+        moving, 
+        defo,  
+        path=None, 
+        name='deform',
+    ):
+    """
+    Transforms a series of images using a transformation produced by 
+    `mdreg.skimage.coreg_series()`.
+
+    Parameters
+    ----------
+    moving : numpy.ndarray | zarr.Array
+        The moving image or volume, with dimensions (x,y,t) or (x,y,z,t).  
+    defo : numpy.ndarray | zarr.Array
+        The deformation field with the same dimensions as *moving*, and one 
+        additional dimension for the components of the vector field. 
+    path : str, optional
+        Path on disk where to save the results. If no path is provided, the 
+        results are not saved to disk. Defaults to None.
+    name : str, optional
+        For data that are saved on disk, provide an optional filename. This 
+        argument is ignored if no path is provided.
+
+    Returns
+    -------
+        numpy.ndarray: The transformed image.
+    """
+    deformed = io._copy(moving, path, name)
+    for t in range(moving.shape[-1]):
+        deformed[...,t] = transform(moving[...,t], defo[...,t,:])
+    return deformed
+
+
+def coreg(
+        moving: np.ndarray, 
+        fixed: np.ndarray, 
+        **kwargs,
+    ) -> Tuple[np.ndarray, np.ndarray]:
 
     """
-    Coregister two arrays
+    Coregister two 2D images or 3D volumes.
     
     Parameters
     ----------
@@ -27,101 +152,20 @@ def coreg(moving:np.ndarray, fixed:np.ndarray, **kwargs):
     -------
     coreg : numpy.ndarray
         Coregistered image in the same shape as the moving image.
-    deformation : numpy.ndarray
-        Deformation field in the same shape as the moving image - but with an 
-        additional dimension at the end for the components of the deformation 
-        vector. 
+    defo : numpy.ndarray | zarr.Array
+        The deformation field with the same dimensions as *moving*, and one 
+        additional dimension for the components of the vector field. If 
+        *moving* has dimensions (x,y) and (x,y,z), then the deformation 
+        field will have dimensions (x,y,2) and (x,y,z,3), respectively. 
+        The displacement vectors are measured in voxel units. To retrieve 
+        displacements in physical units, the components defo[...,i] of the 
+        deformation field need to be multiplied with the voxel dimensions. 
     """
 
     if moving.ndim == 2: 
         return _coreg_2d(moving, fixed, **kwargs)
     if moving.ndim == 3:
         return _coreg_3d(moving, fixed, **kwargs)
-
-
-def coreg_series(moving:np.ndarray, fixed:np.ndarray, parallel=False, 
-                 progress_bar=False, **kwargs):
-    """
-    Coregister two series of 2D images or 3D volumes.
-
-    Parameters
-    ----------
-    moving : numpy.ndarray
-        The moving image or volume, with dimensions (x,y,t) or (x,y,z,t). 
-    fixed : numpy.ndarray
-        The fixed target image or volume, in the same dimensions as the 
-        moving image. 
-    parallel : bool
-        Set to True to parallelize the computations. Defaults to False.
-    progress_bar : bool
-        Show a progress bar during the computation. This keyword is ignored 
-        if parallel = True. Defaults to False.
-    kwargs : dict
-        Any keyword argument accepted by `skimage.optical_flow_tvl1`. 
-
-    Returns
-    -------
-    coregistered : numpy.ndarray
-        Coregistered series with the same dimensions as the moving image. 
-    deformation : numpy.ndarray
-        The deformation field with the same dimensions as *moving*, and one 
-        additional dimension for the components of the vector field. If 
-        *moving* 
-        has dimensions (x,y,t) and (x,y,z,t), then the deformation field will 
-        have dimensions (x,y,2,t) and (x,y,z,3,t), respectively.
-    """
-
-    if parallel:
-        return _coreg_series_parallel(
-            moving, fixed, **kwargs)
-    else:
-        return _coreg_series_sequential(
-            moving, fixed, progress_bar=progress_bar, **kwargs)
-
-
-def _coreg_series_sequential(moving, fixed, progress_bar=False, **kwargs):
-
-    nt = moving.shape[-1]
-    deformed, deformation = utils._init_output(moving)
-
-    for t in tqdm(range(nt), 
-                  desc='Coregistering series', 
-                  disable=not progress_bar): 
-        deformed[...,t], deformation[...,t] = coreg(
-            moving[...,t], fixed[...,t], **kwargs)
-
-    return deformed, deformation
-
-
-def _coreg_series_parallel(moving, fixed, **kwargs):
-
-    nt = moving.shape[-1]
-    deformed, deformation = utils._init_output(moving)
-
-    try: 
-        num_workers = int(len(os.sched_getaffinity(0)))
-    except: 
-        num_workers = int(os.cpu_count())
-        
-    pool = multiprocessing.Pool(processes=num_workers)
-    args = [(moving[...,t], fixed[...,t], kwargs) for t in range(nt)]
-    results = list(tqdm(pool.imap(_coreg_parallel, args), total=nt, desc='Coregistering series'))
-
-    # Good practice to close and join when the pool is no longer needed
-    # https://stackoverflow.com/questions/38271547/when-should-we-call-multiprocessing-pool-join
-    pool.close()
-    pool.join()
-
-    for t in range(nt):
-        deformed[...,t] = results[t][0]
-        deformation[...,t] = results[t][1]
-
-    return deformed, deformation
-    
-
-def _coreg_parallel(args):
-    moving, fixed, kwargs = args
-    return coreg(moving, fixed, **kwargs)
 
 
 def _coreg_2d(moving, fixed, **kwargs):
@@ -176,8 +220,19 @@ def _coreg_3d(moving, fixed, **kwargs):
     return warped_moving, deformation_field
 
 
-# Needs testing
-def warp(moving, defo):
+
+def transform(moving, defo):
+    """Transforms an image with a deformation field.
+
+    Args:
+        moving (numpy.ndarray): The input 2D or 3D image array.
+        defo (numpy.ndarray): The deformation field. This array has 3
+            dimensions for a 2D image array and 4 dimensions for a 3D image 
+            array.
+
+    Returns:
+        numpy.ndarray: The transformed image.
+    """
 
     if moving.ndim == 2:
         rc, cc = np.meshgrid( 

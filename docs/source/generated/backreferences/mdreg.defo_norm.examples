@@ -19,10 +19,10 @@ Examples using ``mdreg.defo_norm``
 
 .. only:: html
 
-  .. image:: /generated/examples/use_cases/images/thumb/sphx_glr_plot_3Dexample_vfa_thumb.gif
+  .. image:: /generated/examples/use_cases/images/thumb/sphx_glr_plot_vfa_liver_thumb.gif
     :alt:
 
-  :ref:`sphx_glr_generated_examples_use_cases_plot_3Dexample_vfa.py`
+  :ref:`sphx_glr_generated_examples_use_cases_plot_vfa_liver.py`
 
 .. raw:: html
 
@@ -32,7 +32,7 @@ Examples using ``mdreg.defo_norm``
 
 .. only:: not html
 
- * :ref:`sphx_glr_generated_examples_use_cases_plot_3Dexample_vfa.py`
+ * :ref:`sphx_glr_generated_examples_use_cases_plot_vfa_liver.py`
 
 .. thumbnail-parent-div-close
 

@@ -8,22 +8,6 @@
    "name": "ndarray"
   }
  ],
- "anim": [
-  {
-   "is_class": false,
-   "is_explicit": false,
-   "module": "matplotlib.animation",
-   "module_short": "matplotlib.animation",
-   "name": "ArtistAnimation"
-  },
-  {
-   "is_class": false,
-   "is_explicit": false,
-   "module": "matplotlib",
-   "module_short": "matplotlib",
-   "name": "ArtistAnimation"
-  }
- ],
  "array": [
   {
    "is_class": false,
@@ -69,6 +53,15 @@
    "name": "ndarray"
   }
  ],
+ "defo.shape": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "tuple"
+  }
+ ],
  "fit": [
   {
    "is_class": false,
@@ -94,7 +87,7 @@
    "name": "abs_exp_recovery_2p"
   }
  ],
- "mdreg.animation": [
+ "mdreg.abs_exp_recovery_2p_init": [
   {
    "is_class": false,
    "is_explicit": false,
@@ -107,7 +100,7 @@
    "is_explicit": false,
    "module": "mdreg",
    "module_short": "mdreg",
-   "name": "animation"
+   "name": "abs_exp_recovery_2p_init"
   }
  ],
  "mdreg.fetch": [
@@ -147,13 +140,38 @@
    "module": "mdreg",
    "module_short": "mdreg",
    "name": "fit"
+  }
+ ],
+ "mdreg.fit_abs_exp_recovery_2p": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
   },
   {
    "is_class": false,
-   "is_explicit": true,
+   "is_explicit": false,
    "module": "mdreg",
    "module_short": "mdreg",
-   "name": "fit"
+   "name": "fit_abs_exp_recovery_2p"
+  }
+ ],
+ "mdreg.plot.series": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "function"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "mdreg.plot",
+   "module_short": "mdreg.plot",
+   "name": "series"
   }
  ],
  "molli": [
@@ -188,6 +206,24 @@
    "module": "numpy",
    "module_short": "numpy",
    "name": "ndarray"
+  }
+ ],
+ "transfo": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "numpy",
+   "module_short": "numpy",
+   "name": "ndarray"
+  }
+ ],
+ "transfo.shape": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "tuple"
   }
  ]
 }

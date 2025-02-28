@@ -7,6 +7,7 @@ docs/build
 tests/tmp/*
 tests/export/*
 .vscode/*
+src/mdreg/datafiles/*
 
 ### Python ###
 # Byte-compiled / optimized / DLL files

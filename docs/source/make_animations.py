@@ -14,7 +14,7 @@ def fetch_molli():
     array = data['array'][:,:,0,:]
 
     # Use the built-in animation function of mdreg to visualise the motion:
-    mdreg.animation(array, path=path, filename='fetch_molli', vmin=0, vmax=1e4)
+    mdreg.plot.animation(array, path=path, filename='fetch_molli', vmin=0, vmax=1e4)
 
 
 
@@ -30,7 +30,7 @@ def mdreg_default():
     coreg, defo, fit, pars = mdreg.fit(array)
 
     # Visualise the results
-    mdreg.plot_series(array, fit, coreg, path=path, filename='mdreg_default', vmin=0, vmax=1e4)
+    mdreg.plot.series(array, fit, coreg, path=path, filename='mdreg_default', vmin=0, vmax=1e4)
 
 
 def molli_builtin():
@@ -44,7 +44,7 @@ def molli_builtin():
     # Perform model-driven coregistration
     coreg, defo, fit, pars = mdreg.fit(array,
         fit_image = {
-            'func': mdreg.abs_exp_recovery_2p,
+            'func': mdreg.fit_abs_exp_recovery_2p,
             'TI': np.array(data['TI'])/1000,
             'parallel': True,
         },
@@ -52,7 +52,7 @@ def molli_builtin():
     )
 
     # Visualise the results
-    mdreg.plot_series(array, fit, coreg, path=path, filename='molli_builtin', vmin=0, vmax=1e4)
+    mdreg.plot.series(array, fit, coreg, path=path, filename='molli_builtin', vmin=0, vmax=1e4)
 
 
 
@@ -86,9 +86,7 @@ def molli_my_fit():
     )
 
     # Show the result with mdreg's built-in plot functions
-    mdreg.plot_series(array, fit, coreg, path=path, filename='molli_my_fit', vmin=0, vmax=1e4)
-
-
+    mdreg.plot.series(array, fit, coreg, path=path, filename='molli_my_fit', vmin=0, vmax=1e4)
 
 
 
@@ -103,7 +101,7 @@ def molli_skimage():
     # Perform model-driven coregistration
     coreg, defo, fit, pars = mdreg.fit(array,
         fit_image = {
-            'func': mdreg.abs_exp_recovery_2p,
+            'func': mdreg.fit_abs_exp_recovery_2p,
             'TI': np.array(data['TI'])/1000,
             'parallel': True,
         },
@@ -117,7 +115,7 @@ def molli_skimage():
     )
 
     # Visualise the results
-    mdreg.plot_series(array, fit, coreg, path=path, filename='molli_skimage', vmin=0, vmax=1e4)
+    mdreg.plot.series(array, fit, coreg, path=path, filename='molli_skimage', vmin=0, vmax=1e4)
 
 
 

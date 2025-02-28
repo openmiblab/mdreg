@@ -19,20 +19,20 @@ Examples using ``mdreg.mdreg.fit``
 
 .. only:: html
 
-  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_getting_started_custom_thumb.gif
+  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_models_options_thumb.gif
     :alt:
 
-  :ref:`sphx_glr_generated_examples_tutorials_plot_getting_started_custom.py`
+  :ref:`sphx_glr_generated_examples_tutorials_plot_models_options.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Using custom-built models</div>
+      <div class="sphx-glr-thumbnail-title">Defining a signal model</div>
     </div>
 
 
 .. only:: not html
 
- * :ref:`sphx_glr_generated_examples_tutorials_plot_getting_started_custom.py`
+ * :ref:`sphx_glr_generated_examples_tutorials_plot_models_options.py`
 
 .. thumbnail-parent-div-close
 

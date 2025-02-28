@@ -6,11 +6,6 @@
 Examples
 ########
 
-.. note::
-
-   ``mdreg`` is under construction. At this stage, the API may still change and 
-   features may be deprecated without warning.
-
 
 .. raw:: html
 
@@ -41,11 +36,45 @@ Tutorials
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This examples shows how mdreg can be used to perform 2D motion correction  slice-by-slice on a 4D array. Typical application examples are motion  correction of multi-slice MRI series such as Look-Locker T1 mapping as in  this example.">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example illustrates how mdreg can be used to fit models without  motion correction. The idea is illustrated for a 3D time series with  variable flip angles (VFA), and a linear signal model fit.">
 
 .. only:: html
 
-  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_multislice_thumb.gif
+  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_model_fitting_thumb.gif
+    :alt:
+
+  :ref:`sphx_glr_generated_examples_tutorials_plot_model_fitting.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Fitting models without motion correction</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="By default, mdreg performs coregistration using the optical flow method  optical_flow_tvl1 as implemented in skimage, with default  settings for all parameters. ">
+
+.. only:: html
+
+  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_coreg_options_thumb.gif
+    :alt:
+
+  :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_options.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Coregistration options in mdreg</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="By default mdreg performs 3D coregistration on 3D series, and 2D  coregistration on 2D series. In case the 3D series encodes a collection of  2D slices with gaps in between (multi-slice data), this may not be appropriate.">
+
+.. only:: html
+
+  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_multislice_thumb.png
     :alt:
 
   :ref:`sphx_glr_generated_examples_tutorials_plot_multislice.py`
@@ -58,35 +87,35 @@ Tutorials
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="We illustrate the basic use of mdreg for the use case of fitting the  longitudinal MRI relaxation time T1 from a Look-Locker MRI  sequence. ">
+    <div class="sphx-glr-thumbcontainer" tooltip="Since mdreg performs model-driven motion correction, the choice of an  appropriate model is important to the result. We illustrate this here by coregistering a dataset with different models.">
 
 .. only:: html
 
-  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_getting_started_thumb.gif
+  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_model_selection_thumb.gif
     :alt:
 
-  :ref:`sphx_glr_generated_examples_tutorials_plot_getting_started.py`
+  :ref:`sphx_glr_generated_examples_tutorials_plot_model_selection.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Using built-in models</div>
+      <div class="sphx-glr-thumbnail-title">The effect of model selection</div>
     </div>
 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="By default, dcmri uses free-form deformation implemented in the package  itk.elastix, which default settings for all configuration parameters. ">
+    <div class="sphx-glr-thumbcontainer" tooltip="When data are entered as numpy arrays, mreg will load the entire array in memory,  perform the computations and generate new datasets in memory, such as model fit  arrays or deformation fields. ">
 
 .. only:: html
 
-  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_getting_started_defo_thumb.gif
+  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_large_data_thumb.png
     :alt:
 
-  :ref:`sphx_glr_generated_examples_tutorials_plot_getting_started_defo.py`
+  :ref:`sphx_glr_generated_examples_tutorials_plot_large_data.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Customizing the coregistration</div>
+      <div class="sphx-glr-thumbnail-title">Datasets larger than RAM</div>
     </div>
 
 
@@ -96,14 +125,48 @@ Tutorials
 
 .. only:: html
 
-  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_getting_started_custom_thumb.gif
+  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_models_options_thumb.gif
     :alt:
 
-  :ref:`sphx_glr_generated_examples_tutorials_plot_getting_started_custom.py`
+  :ref:`sphx_glr_generated_examples_tutorials_plot_models_options.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Using custom-built models</div>
+      <div class="sphx-glr-thumbnail-title">Defining a signal model</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="mdreg includes a harmonized API for pairwise coregistration of 2D images or 3D volumes with three different packages: ants, skimage and  itk-elastix. ">
+
+.. only:: html
+
+  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_coreg_pairwise_thumb.png
+    :alt:
+
+  :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_pairwise.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Pairwise coregistration API</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="mdreg includes a harmonized API for groupwise coregistration of  series of 2D images or 3D volumes with three different packages: ants,  skimage and itk-elastix. This examples illustrates their usage.">
+
+.. only:: html
+
+  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_coreg_groupwise_thumb.gif
+    :alt:
+
+  :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_groupwise.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Groupwise coregistration API</div>
     </div>
 
 
@@ -129,35 +192,52 @@ Use cases
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example illustrates motion correction of a 3D time series with  variable flip angles (VFA). The motion correction is performed with 3D  coregistration and using a linear signal model fit.">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how mdreg can be used to perform 2D motion correction  slice-by-slice on a 4D array, for the case of Look-Locker T1 mapping.">
 
 .. only:: html
 
-  .. image:: /generated/examples/use_cases/images/thumb/sphx_glr_plot_3Dexample_vfa_thumb.gif
+  .. image:: /generated/examples/use_cases/images/thumb/sphx_glr_plot_molli_kidney_thumb.gif
     :alt:
 
-  :ref:`sphx_glr_generated_examples_use_cases_plot_3Dexample_vfa.py`
+  :ref:`sphx_glr_generated_examples_use_cases_plot_molli_kidney.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">3D Variable Flip Angle (Linear)</div>
+      <div class="sphx-glr-thumbnail-title">Multi-slice MOLLI T1-mapping in the kidney</div>
     </div>
 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example illustrates motion correction of a 3D time series with  variable flip angles (VFA). The motion correction is performed with 3D  coregistration and a non-linear signal model fit.">
+    <div class="sphx-glr-thumbcontainer" tooltip="Fit a linear 2-compartment model to a 3D DCE dataset.">
 
 .. only:: html
 
-  .. image:: /generated/examples/use_cases/images/thumb/sphx_glr_plot_3Dexample_vfa_nonlin_thumb.gif
+  .. image:: /generated/examples/use_cases/images/thumb/sphx_glr_plot_dce_liver_thumb.gif
     :alt:
 
-  :ref:`sphx_glr_generated_examples_use_cases_plot_3Dexample_vfa_nonlin.py`
+  :ref:`sphx_glr_generated_examples_use_cases_plot_dce_liver.py`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">3D Variable Flip Angle (non-linear)</div>
+      <div class="sphx-glr-thumbnail-title">3D DCE-MRI in the liver</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example illustrates motion correction of a 3D time series with  variable flip angles (VFA). The motion correction is performed with 3D  coregistration and using a linear signal model fit.">
+
+.. only:: html
+
+  .. image:: /generated/examples/use_cases/images/thumb/sphx_glr_plot_vfa_liver_thumb.gif
+    :alt:
+
+  :ref:`sphx_glr_generated_examples_use_cases_plot_vfa_liver.py`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">3D Variable Flip Angle (Linear)</div>
     </div>
 
 

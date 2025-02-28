@@ -10,14 +10,11 @@ version = "0.4.4"
 dependencies = [
   'importlib-resources>=1.1.0',
   'tqdm',
-  "numpy<=1.26.4", 
+  "numpy", 
   "scipy",
-  "matplotlib",
-  "Pillow",
-  "itk-elastix",
   "scikit-image",
-
-#  "SimpleITK", 
+  "zarr",
+  "dask",
 ]
 
 # optional information
@@ -64,6 +61,24 @@ include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[project.optional-dependencies]
+complete = [
+  'antspyx',
+  'itk-elastix',
+  "matplotlib",
+  "Pillow",
+]
+elastix = [
+  'itk-elastix',
+]
+ants = [
+  'antspyx',
+]
+plot = [
+  "matplotlib",
+  "Pillow",
+]
 
 
 

@@ -1,8 +1,8 @@
 .. _end-to-end models:
 
-*************************
-Model-driven registration
-*************************
+**************
+Main functions
+**************
 
 .. currentmodule:: mdreg
 
