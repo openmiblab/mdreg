@@ -129,7 +129,8 @@ def fit(moving,
     it = 1
     start = time.time()
 
-    print('Initializing..')
+    if verbose > 0:
+        print('Initializing..')
     coreg = io._copy(moving, path, 'coreg')
 
     while not converged: 
