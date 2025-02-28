@@ -27,6 +27,11 @@ Install mdreg from source:
 
 >>> pip install -e path\to\mdreg
 
+or for a complete Installation
+
+>>> pip install -e path\to\mdreg[complete]
+
+
 Install requirements for developers:
 
 cd to mdreg
