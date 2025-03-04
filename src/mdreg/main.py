@@ -11,7 +11,7 @@ from mdreg import fit_models, elastix, skimage, ants, io
 
 
 def fit(moving,
-        fit_pixel = None,
+        fit_pixels = None,
         fit_coreg = None,
         fit_image = None,
         tol = 1e-6,    
@@ -27,11 +27,11 @@ def fit(moving,
     ----------
     moving : numpy.ndarray | zarr.Array
         The series of images to be corrected, with dimensions (x,y,t) or (x,y,z,t). 
-    fit_pixel : dict, optional
+    fit_pixels : dict, optional
         A dictionary defining a single-pixel signal model. The possible items 
-        in the dictionary are the keywords of the function `mdreg.fit_pixel`. 
+        in the dictionary are the keywords of the function `mdreg.fit_pixels`. 
         For a slice-by-slice computation (4D array with force_2d=True), 
-        *fit_pixel* can be a list of dictionaries, one for each slice. 
+        *fit_pixels* can be a list of dictionaries, one for each slice. 
         The default is None.
     fit_coreg : dict, optional
         The parameters for coregistering the images. *fit_coreg* has one 
@@ -40,7 +40,7 @@ def fit(moving,
         of the *coreg_series* function of the package specified. 
     fit_image : dict or list, optional
         A dictionary defining the function to fit the signal data, and its 
-        parameter values. This argument is ignored if *fit_pixel* is already 
+        parameter values. This argument is ignored if *fit_pixels* is already 
         provided. *fit_image* has one required key 'func' that specifies the 
         fit function to use. The other entries are the keyword arguments of 
         this fit function. 
@@ -107,7 +107,7 @@ def fit(moving,
     if moving.ndim==4:
         if force_2d:
             return  _fit_force_2d(
-               moving, fit_image, fit_coreg, fit_pixel, tol, maxit, 
+               moving, fit_image, fit_coreg, fit_pixels, tol, maxit, 
                verbose, path, 
             )
         
@@ -122,7 +122,7 @@ def fit(moving,
     # Set paths    
     _set_path(fit_coreg, path)
     _set_path(fit_image, path)
-    _set_path(fit_pixel, path)
+    _set_path(fit_pixels, path)
 
     # Compute
     converged = False
@@ -140,8 +140,8 @@ def fit(moving,
         # Fit signal model
         if verbose > 0:
             print(f'Iteration {it}: fitting signal model')
-        if fit_pixel is not None:
-            fit, pars = fit_models.fit_pixels(coreg, **fit_pixel)
+        if fit_pixels is not None:
+            fit, pars = fit_models.fit_pixels(coreg, **fit_pixels)
         else:
             kwargs = {i:fit_image[i] for i in fit_image if i!='func'}
             fit, pars = fit_image['func'](coreg, **kwargs)
@@ -177,7 +177,7 @@ def fit(moving,
 
 
 def _fit_force_2d(
-        moving, fit_image, fit_coreg, fit_pixel, tol, maxit, verbose, 
+        moving, fit_image, fit_coreg, fit_pixels, tol, maxit, verbose, 
         path,
     ):
 
@@ -219,16 +219,16 @@ def _fit_force_2d(
         else:
             fit_image_k = fit_image[k]
 
-        if fit_pixel is None:
-            fit_pixel_k = None
-        elif isinstance(fit_pixel, dict):
-            fit_pixel_k = fit_pixel
+        if fit_pixels is None:
+            fit_pixels_k = None
+        elif isinstance(fit_pixels, dict):
+            fit_pixels_k = fit_pixels
         else:
-            fit_pixel_k = fit_pixel[k]
+            fit_pixels_k = fit_pixels[k]
 
         vals = fit(
             moving[:,:,k,:],
-            fit_pixel = fit_pixel_k,
+            fit_pixels = fit_pixels_k,
             fit_image = fit_image_k,
             fit_coreg = fit_coreg,
             tol = tol,
