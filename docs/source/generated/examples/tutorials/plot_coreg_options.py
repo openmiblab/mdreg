@@ -23,7 +23,7 @@ import mdreg
 
 #%%
 # Load test data
-data = mdreg.fetch('MOLLI_small')
+data = mdreg.fetch('MOLLI')
 array = data['array'][:,:,0,:]
 
 # Throughout this example we use the same signal model:
@@ -33,7 +33,7 @@ molli = {
 }
 
 # Visualise the data
-mdreg.plot.animation(array, vmin=0, vmax=1e4)
+anim = mdreg.plot.animation(array, vmin=0, vmax=1e4)
 
 
 # %%
@@ -50,7 +50,7 @@ coreg, fit, _, _ = mdreg.fit(
 
 #%%
 # Visualise the results
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 
 # %%
 # This has clearly had some effect, but the motion correction is not perfect 
@@ -72,7 +72,7 @@ coreg, fit, _, _ = mdreg.fit(
 )
 
 # Visualise the results
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 
 #%%
 # This appears to have had the desired effect and has resulted in a better 
@@ -103,7 +103,7 @@ coreg, fit, _, _ = mdreg.fit(
 )
 
 # Visualise the results
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 
 
 #%%
@@ -128,7 +128,7 @@ coreg, fit, _, _ = mdreg.fit(
 
 #%%
 # Looking at the results, this is not a great solution for these data.
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 
 
 # sphinx_gallery_start_ignore

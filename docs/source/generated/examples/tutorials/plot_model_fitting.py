@@ -15,7 +15,7 @@ import numpy as np
 import mdreg
 
 # Example data included in mdreg
-data = mdreg.fetch('VFA_small')
+data = mdreg.fetch('VFA')
 
 # Variables used in this examples
 array = data['array']       # 4D signal data (x, y, z, FA)

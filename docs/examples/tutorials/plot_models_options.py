@@ -125,11 +125,11 @@ my_pixel_fit = {
 
 #%%
 # And this can be provided directly to `~mdreg.mdreg.fit` via the keyword argument 
-# *fit_pixel** - instructing ``mdreg`` to perform pixel-based fitting using 
+# *fit_pixels** - instructing ``mdreg`` to perform pixel-based fitting using 
 # the parameters defined in *my_pixel_fit*:
 
 # Perform model-driven coregistration with a custom pixel model
-coreg, fit, defo, pars = mdreg.fit(array, fit_pixel=my_pixel_fit)
+coreg, fit, defo, pars = mdreg.fit(array, fit_pixels=my_pixel_fit)
 
 # Visualise the results
 anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)

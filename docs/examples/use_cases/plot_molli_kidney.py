@@ -42,6 +42,7 @@ coreg, fit, transfo, pars = mdreg.fit(
         'FinalGridSpacingInPhysicalUnits': 50.0,
     },
     force_2d=True, 
+    verbose=2,
 )
 
 #%%

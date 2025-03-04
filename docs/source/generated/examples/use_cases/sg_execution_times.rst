@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**119:05.357** total execution time for 3 files **from generated\examples\use_cases**:
+**686:12.632** total execution time for 3 files **from generated\examples\use_cases**:
 
 .. container::
 
@@ -32,12 +32,12 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_generated_examples_use_cases_plot_molli_kidney.py` (``plot_molli_kidney.py``)
-     - 79:40.792
-     - 0.0
    * - :ref:`sphx_glr_generated_examples_use_cases_plot_dce_liver.py` (``plot_dce_liver.py``)
-     - 34:36.017
+     - 686:12.632
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_use_cases_plot_molli_kidney.py` (``plot_molli_kidney.py``)
+     - 00:00.000
      - 0.0
    * - :ref:`sphx_glr_generated_examples_use_cases_plot_vfa_liver.py` (``plot_vfa_liver.py``)
-     - 04:48.548
+     - 00:00.000
      - 0.0

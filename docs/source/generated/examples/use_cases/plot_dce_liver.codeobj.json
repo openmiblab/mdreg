@@ -1,4 +1,13 @@
 {
+ "DCE_small": [
+  {
+   "is_class": false,
+   "is_explicit": true,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "DCE_small"
+  }
+ ],
  "aif": [
   {
    "is_class": false,
@@ -28,8 +37,15 @@
   {
    "is_class": false,
    "is_explicit": false,
+   "module": "zarr.core.array",
+   "module_short": "zarr.core.array",
+   "name": "Array"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
    "module": "zarr.core",
-   "module_short": "zarr",
+   "module_short": "zarr.core",
    "name": "Array"
   },
   {
@@ -44,8 +60,15 @@
   {
    "is_class": false,
    "is_explicit": false,
+   "module": "zarr.core.array",
+   "module_short": "zarr.core.array",
+   "name": "Array"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
    "module": "zarr.core",
-   "module_short": "zarr",
+   "module_short": "zarr.core",
    "name": "Array"
   },
   {
@@ -60,8 +83,15 @@
   {
    "is_class": false,
    "is_explicit": false,
+   "module": "zarr.core.array",
+   "module_short": "zarr.core.array",
+   "name": "Array.attrs"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
    "module": "zarr.core",
-   "module_short": "zarr",
+   "module_short": "zarr.core",
    "name": "Array.attrs"
   },
   {
@@ -76,8 +106,15 @@
   {
    "is_class": false,
    "is_explicit": false,
+   "module": "zarr.core.array",
+   "module_short": "zarr.core.array",
+   "name": "Array"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
    "module": "zarr.core",
-   "module_short": "zarr",
+   "module_short": "zarr.core",
    "name": "Array"
   },
   {
@@ -204,8 +241,15 @@
   {
    "is_class": false,
    "is_explicit": false,
+   "module": "zarr.core.array",
+   "module_short": "zarr.core.array",
+   "name": "Array"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
    "module": "zarr.core",
-   "module_short": "zarr",
+   "module_short": "zarr.core",
    "name": "Array"
   },
   {
@@ -259,6 +303,24 @@
    "name": "float"
   }
  ],
+ "t0": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "int"
+  }
+ ],
+ "t1": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "builtins",
+   "module_short": "builtins",
+   "name": "int"
+  }
+ ],
  "tacq": [
   {
    "is_class": false,
@@ -288,9 +350,23 @@
   {
    "is_class": false,
    "is_explicit": false,
-   "module": "numpy",
-   "module_short": "numpy",
-   "name": "ndarray"
+   "module": "zarr.core.array",
+   "module_short": "zarr.core.array",
+   "name": "Array"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "zarr.core",
+   "module_short": "zarr.core",
+   "name": "Array"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "zarr",
+   "module_short": "zarr",
+   "name": "Array"
   }
  ]
 }

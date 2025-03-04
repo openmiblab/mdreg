@@ -81,7 +81,7 @@ def molli_my_fit():
 
     # Coregister with the t1-model:
     coreg, defo, fit, pars = mdreg.fit(array,
-        fit_pixel = my_pixel_fit,
+        fit_pixels = my_pixel_fit,
         verbose=2,
     )
 

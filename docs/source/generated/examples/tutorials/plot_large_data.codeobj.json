@@ -12,8 +12,15 @@
   {
    "is_class": false,
    "is_explicit": false,
+   "module": "zarr.core.array",
+   "module_short": "zarr.core.array",
+   "name": "Array"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
    "module": "zarr.core",
-   "module_short": "zarr",
+   "module_short": "zarr.core",
    "name": "Array"
   },
   {
@@ -28,8 +35,15 @@
   {
    "is_class": false,
    "is_explicit": false,
+   "module": "zarr.core.array",
+   "module_short": "zarr.core.array",
+   "name": "Array"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
    "module": "zarr.core",
-   "module_short": "zarr",
+   "module_short": "zarr.core",
    "name": "Array"
   },
   {
@@ -44,8 +58,15 @@
   {
    "is_class": false,
    "is_explicit": false,
+   "module": "zarr.core.array",
+   "module_short": "zarr.core.array",
+   "name": "Array.attrs"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
    "module": "zarr.core",
-   "module_short": "zarr",
+   "module_short": "zarr.core",
    "name": "Array.attrs"
   },
   {
@@ -60,8 +81,15 @@
   {
    "is_class": false,
    "is_explicit": false,
+   "module": "zarr.core.array",
+   "module_short": "zarr.core.array",
+   "name": "Array"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
    "module": "zarr.core",
-   "module_short": "zarr",
+   "module_short": "zarr.core",
    "name": "Array"
   },
   {
@@ -92,8 +120,15 @@
   {
    "is_class": false,
    "is_explicit": false,
+   "module": "zarr.core.array",
+   "module_short": "zarr.core.array",
+   "name": "Array"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
    "module": "zarr.core",
-   "module_short": "zarr",
+   "module_short": "zarr.core",
    "name": "Array"
   },
   {
@@ -108,8 +143,15 @@
   {
    "is_class": false,
    "is_explicit": false,
+   "module": "zarr.core.array",
+   "module_short": "zarr.core.array",
+   "name": "Array.store"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
    "module": "zarr.core",
-   "module_short": "zarr",
+   "module_short": "zarr.core",
    "name": "Array.store"
   },
   {
@@ -277,8 +319,15 @@
   {
    "is_class": false,
    "is_explicit": false,
+   "module": "zarr.core.array",
+   "module_short": "zarr.core.array",
+   "name": "Array"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
    "module": "zarr.core",
-   "module_short": "zarr",
+   "module_short": "zarr.core",
    "name": "Array"
   },
   {

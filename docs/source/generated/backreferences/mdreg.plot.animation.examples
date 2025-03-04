@@ -15,95 +15,11 @@ Examples using ``mdreg.plot.animation``
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example illustrates how mdreg can be used to fit models without  motion correction. The idea is illustrated for a 3D time series with  variable flip angles (VFA), and a linear signal model fit.">
+    <div class="sphx-glr-thumbcontainer" tooltip="Fit a linear 2-compartment model to a 3D DCE dataset. ">
 
 .. only:: html
 
-  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_model_fitting_thumb.gif
-    :alt:
-
-  :ref:`sphx_glr_generated_examples_tutorials_plot_model_fitting.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Fitting models without motion correction</div>
-    </div>
-
-
-.. only:: not html
-
- * :ref:`sphx_glr_generated_examples_tutorials_plot_model_fitting.py`
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="By default, mdreg performs coregistration using the optical flow method  optical_flow_tvl1 as implemented in skimage, with default  settings for all parameters. ">
-
-.. only:: html
-
-  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_coreg_options_thumb.gif
-    :alt:
-
-  :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_options.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Coregistration options in mdreg</div>
-    </div>
-
-
-.. only:: not html
-
- * :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_options.py`
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="mdreg includes a harmonized API for groupwise coregistration of  series of 2D images or 3D volumes with three different packages: ants,  skimage and itk-elastix. This examples illustrates their usage.">
-
-.. only:: html
-
-  .. image:: /generated/examples/tutorials/images/thumb/sphx_glr_plot_coreg_groupwise_thumb.gif
-    :alt:
-
-  :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_groupwise.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Groupwise coregistration API</div>
-    </div>
-
-
-.. only:: not html
-
- * :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_groupwise.py`
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how mdreg can be used to perform 2D motion correction  slice-by-slice on a 4D array, for the case of Look-Locker T1 mapping.">
-
-.. only:: html
-
-  .. image:: /generated/examples/use_cases/images/thumb/sphx_glr_plot_molli_kidney_thumb.gif
-    :alt:
-
-  :ref:`sphx_glr_generated_examples_use_cases_plot_molli_kidney.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">Multi-slice MOLLI T1-mapping in the kidney</div>
-    </div>
-
-
-.. only:: not html
-
- * :ref:`sphx_glr_generated_examples_use_cases_plot_molli_kidney.py`
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="Fit a linear 2-compartment model to a 3D DCE dataset.">
-
-.. only:: html
-
-  .. image:: /generated/examples/use_cases/images/thumb/sphx_glr_plot_dce_liver_thumb.gif
+  .. image:: /generated/examples/use_cases/images/thumb/sphx_glr_plot_dce_liver_thumb.png
     :alt:
 
   :ref:`sphx_glr_generated_examples_use_cases_plot_dce_liver.py`
@@ -117,27 +33,6 @@ Examples using ``mdreg.plot.animation``
 .. only:: not html
 
  * :ref:`sphx_glr_generated_examples_use_cases_plot_dce_liver.py`
-
-.. raw:: html
-
-    <div class="sphx-glr-thumbcontainer" tooltip="This example illustrates motion correction of a 3D time series with  variable flip angles (VFA). The motion correction is performed with 3D  coregistration and using a linear signal model fit.">
-
-.. only:: html
-
-  .. image:: /generated/examples/use_cases/images/thumb/sphx_glr_plot_vfa_liver_thumb.gif
-    :alt:
-
-  :ref:`sphx_glr_generated_examples_use_cases_plot_vfa_liver.py`
-
-.. raw:: html
-
-      <div class="sphx-glr-thumbnail-title">3D Variable Flip Angle (Linear)</div>
-    </div>
-
-
-.. only:: not html
-
- * :ref:`sphx_glr_generated_examples_use_cases_plot_vfa_liver.py`
 
 .. thumbnail-parent-div-close
 

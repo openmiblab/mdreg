@@ -56,7 +56,7 @@ Fetch the multi-slice MOLLI dataset
 
 .. code-block:: Python
 
-    data = mdreg.fetch('MOLLI_small')
+    data = mdreg.fetch('MOLLI')
 
     # Get the relevant variables (3D data)
     array = data['array'] 
@@ -97,13 +97,6 @@ Perform slice-by-slice motion correction
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- .. code-block:: none
-
-    Initializing..
-    Initializing..
-
 
 
 
@@ -139,7 +132,7 @@ Visualise the results
 
 .. code-block:: Python
 
-    mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
+    anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 
 
 
@@ -169,12 +162,6 @@ Visualise the results
          :class: sphx-glr-multi-img
 
 
-.. rst-class:: sphx-glr-script-out
-
- .. code-block:: none
-
-
-    [<matplotlib.animation.ArtistAnimation object at 0x00000253BC673490>, <matplotlib.animation.ArtistAnimation object at 0x00000253CD9A0A00>, <matplotlib.animation.ArtistAnimation object at 0x00000253CC963070>]
 
 
 
@@ -242,9 +229,7 @@ This works the same when using ants or elastix for coregistration:
 
  .. code-block:: none
 
-    Initializing..
     invalid value encountered in cast
-    Initializing..
 
 
 
@@ -269,7 +254,6 @@ The difference with skimage is that the transformations returned are now a
  .. code-block:: none
 
     2D transformation shape: (2, 8)
-    Animation was deleted without rendering anything. This is most likely not intended. To prevent deletion, assign the Animation to a variable, e.g. `anim`, that exists until you output the Animation using `plt.show()` or `anim.save()`.
 
 
 
@@ -302,9 +286,6 @@ time point is returned:
 
  .. code-block:: none
 
-    Initializing..
-    Building elastix parameter object..
-    Coregistering..
     Elastix coregistration failed. Returning unregistered image. To learn more about the error, set log=True.
     3D transformation shape: (8,)
 
@@ -316,9 +297,9 @@ time point is returned:
 Slice by slice with pixel models
 --------------------------------
 If the signal model fit is defined with a custom model via the 
-*fit_pixel* argument, the slice-by-slice operation works the same: 
+*fit_pixels* argument, the slice-by-slice operation works the same: 
 set the *force_2d* keyword to True, and - if each slice has 
-different parameter settings - supply the *fit_pixel* 
+different parameter settings - supply the *fit_pixels* 
 argument as a list of dictionaries.
 
 .. GENERATED FROM PYTHON SOURCE LINES 119-137
@@ -338,7 +319,7 @@ argument as a list of dictionaries.
 
     coreg, fit, transfo, pars = mdreg.fit(
         array, 
-        fit_pixel=molli, 
+        fit_pixels=molli, 
         force_2d=True,
         maxit=1,
     )
@@ -351,10 +332,8 @@ argument as a list of dictionaries.
 
  .. code-block:: none
 
-    Initializing..
     Covariance of the parameters could not be estimated
     overflow encountered in exp
-    Initializing..
     overflow encountered in multiply
 
 
@@ -363,7 +342,7 @@ argument as a list of dictionaries.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (2 minutes 6.875 seconds)
+   **Total running time of the script:** (21 minutes 18.343 seconds)
 
 
 .. _sphx_glr_download_generated_examples_tutorials_plot_multislice.py:

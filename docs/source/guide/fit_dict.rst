@@ -23,10 +23,10 @@ in the list can also be used as a template when building custom functions.
 
 In most cases the signal fit will be performed pixel-by-pixel, meaning the 
 signal for each pixel is fitted independently. For such models a more 
-convenient alternative is to provide the *fit_pixel* dictionary in the call 
+convenient alternative is to provide the *fit_pixels* dictionary in the call 
 to `mdreg.fit` instead of *fit_image*. 
 
-*fit_pixel* has two required items, one is *model* which defines the 
+*fit_pixels* has two required items, one is *model* which defines the 
 single-pixel forward model to fit; the other is *p0*, a set of initial values 
 of the free model parameters. Beyond that any keyword accepted by 
 `mdreg.fit_pixels` can be provided to control the optimization. The function 
