@@ -3,6 +3,8 @@ import shutil
 
 import numpy as np
 import zarr
+from zarr.storage import MemoryStore
+import dask.array as da
 
 
 
@@ -19,55 +21,37 @@ def _fit_models_init(signal, path, npar):
 
     # numpy arrays in memory
     if isinstance(signal, np.ndarray):
-        fit = np.zeros(signal.shape)
-        par = np.zeros(signal.shape[:-1] + (npar,))
-        return fit, par
+        fit_numpy = np.zeros(signal.shape)
+        par_numpy = np.zeros(signal.shape[:-1] + (npar,))
+        return fit_numpy, par_numpy
 
-    # zarrays in memory
     if path is None:
-        fit = zarr.create(
-            signal.shape, 
-            dtype=signal.dtype, 
-            chunks=signal.chunks,
-            store=zarr.MemoryStore(),
-        )
-        fit[:] = 0
-        par = zarr.create(
-            signal.shape[:-1] + (npar, ), 
-            dtype=signal.dtype, 
-            chunks=signal.chunks[:-1] + (npar,),
-            store=zarr.MemoryStore(),
-        )
-        par[:] = 0
-        return fit, par
+        # zarrays in memory 
+        store_fit = MemoryStore()
+        store_par = MemoryStore()
+    else:
+        # zarrays on disk
+        os.makedirs(path, exist_ok=True)
+        store_fit = os.path.join(path, 'fit.zarr')
+        store_par = os.path.join(path, 'pars.zarr')
     
-    # zarrays on disk
-    os.makedirs(path, exist_ok=True)
-    store_fit = os.path.join(path, 'fit.zarr')
-    store_par = os.path.join(path, 'pars.zarr')
-    # if os.path.exists(store_fit):
-    #     # fit = zarr.open(store_fit, mode='w')
-    #     # par = zarr.open(store_par, mode='w')
-    #     fit = zarr.open_array(store_fit, mode='w')
-    #     par = zarr.open_array(store_par, mode='w')
-    # else:
-    fit = zarr.create(
+    fit_dask_array = da.zeros(
         signal.shape, 
         dtype=signal.dtype, 
-        chunks=signal.chunks,
-        store=store_fit,
-        overwrite=True,
+        chunks=signal.chunks, 
     )
-    fit[:] = 0
-    par = zarr.create(
+    fit_dask_array.to_zarr(store_fit, overwrite=True)
+    fit_zarray = zarr.open_array(store_fit, mode='a')
+
+    par_dask_array = da.zeros(
         signal.shape[:-1] + (npar, ), 
         dtype=signal.dtype, 
         chunks=signal.chunks[:-1] + (npar,),
-        store=store_par,
-        overwrite=True,
     )
-    par[:] = 0
-    return fit, par
+    par_dask_array.to_zarr(store_par, overwrite=True)
+    par_zarray = zarr.open_array(store_par, mode='a')
+    
+    return fit_zarray, par_zarray
 
 
 def _defo(array, path=None, force_2d=False, name='defo'):
@@ -81,34 +65,30 @@ def _defo(array, path=None, force_2d=False, name='defo'):
 
     # Numpy arrays in memory
     if isinstance(array, np.ndarray):
-        defo = np.zeros(dshape)
+        defo_numpy = np.zeros(dshape)
         if path is not None:
-            np.save(os.path.join(path, name), defo)
-        return defo
+            os.makedirs(path, exist_ok=True)
+            np.save(os.path.join(path, name), defo_numpy)
+        return defo_numpy
     
-    # Zarrays in memory
     if path is None:
-        defo = zarr.create(
-            dshape, 
-            dtype=array.dtype, 
-            chunks=array.chunks + (dshape[-1], ),
-            store=zarr.MemoryStore(),
-        )
-        defo[:] = 0
-        return defo
-    
-    # Zarrays on disk
-    os.makedirs(path, exist_ok=True)
-    store_defo = os.path.join(path, name+'.zarr')
-    defo = zarr.create(
-        shape=dshape, 
+        # Zarrays in memory
+        store = MemoryStore()
+    else:
+        # Zarrays on disk
+        os.makedirs(path, exist_ok=True)
+        store = os.path.join(path, name+'.zarr')
+
+
+    defo_dask_array = da.zeros(
+        dshape, 
         dtype=array.dtype, 
-        chunks=array.chunks + (dshape[-1], ),
-        store=store_defo,
-        overwrite=True,
+        chunks=array.chunks + (dshape[-1], ), 
     )
-    defo[:] = 0
-    return defo
+    defo_dask_array.to_zarr(store, overwrite=True)
+    defo_zarray = zarr.open_array(store, mode='a')
+
+    return defo_zarray
 
 
 def _copy(array, path=None, name='copy'):
@@ -117,28 +97,33 @@ def _copy(array, path=None, name='copy'):
     if isinstance(array, np.ndarray):
         copy = array.copy()
         if path is not None:
+            os.makedirs(path, exist_ok=True)
             np.save(os.path.join(path, name), copy)
         return copy
     
-    # Zarrays in memory
     if path is None:
-        copy = zarr.create(
-            shape=array.shape, 
-            dtype=array.dtype,
-            chunks=array.chunks,
-            store=zarr.MemoryStore(),
-        )
-        copy[:] = array
-        return copy
+        # Zarray in memory
+        store = MemoryStore()
+    else:
+        # Zarray on disk
+        os.makedirs(path, exist_ok=True)  
+        store = os.path.join(path, name+'.zarr')  
+
+    dask_array = da.from_zarr(array)
+    dask_array.to_zarr(store, overwrite=True)
+    copy_zarr = zarr.open_array(store, mode='a')
+    return copy_zarr
     
-    # Zarrays on disk
-    os.makedirs(path, exist_ok=True)
-    copy = zarr.create(
-        shape=array.shape, 
-        dtype=array.dtype, 
-        chunks=array.chunks,
-        store=os.path.join(path, name+'.zarr'),
-        overwrite=True,
-    )
-    copy[:] = array
-    return copy
+
+if __name__ == '__main__':
+
+    # Create a sample Zarr array
+    zarr_array = zarr.create(shape=(10, 10), dtype='f4', chunks=(5, 5), store=MemoryStore())
+
+    # Copy the Zarr array (in memory)
+    copied_zarr = _copy(zarr_array)
+    print(copied_zarr.shape)
+    print(copied_zarr[0,0])
+    copied_zarr[0,0] = -1
+    print(copied_zarr[0,0])
+
