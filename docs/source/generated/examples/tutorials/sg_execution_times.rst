@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**40:53.742** total execution time for 4 files **from generated\examples\tutorials**:
+**313:25.966** total execution time for 8 files **from generated\examples\tutorials**:
 
 .. container::
 
@@ -32,15 +32,27 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_getting_started_defo.py` (``plot_getting_started_defo.py``)
-     - 40:53.742
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_large_data.py` (``plot_large_data.py``)
+     - 108:53.125
      - 0.0
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_getting_started.py` (``plot_getting_started.py``)
-     - 00:00.000
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_model_fitting.py` (``plot_model_fitting.py``)
+     - 64:33.466
      - 0.0
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_getting_started_custom.py` (``plot_getting_started_custom.py``)
-     - 00:00.000
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_options.py` (``plot_coreg_options.py``)
+     - 55:09.884
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_model_selection.py` (``plot_model_selection.py``)
+     - 45:36.591
      - 0.0
    * - :ref:`sphx_glr_generated_examples_tutorials_plot_multislice.py` (``plot_multislice.py``)
-     - 00:00.000
+     - 21:18.343
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_models_options.py` (``plot_models_options.py``)
+     - 17:12.603
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_groupwise.py` (``plot_coreg_groupwise.py``)
+     - 00:31.356
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_pairwise.py` (``plot_coreg_pairwise.py``)
+     - 00:10.599
      - 0.0

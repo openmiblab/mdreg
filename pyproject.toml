@@ -6,18 +6,16 @@ requires = ['setuptools>=61.2']
 
 [project]
 name = "mdreg"
-version = "0.4.4"
+version = "0.5.0"
 dependencies = [
   'importlib-resources>=1.1.0',
   'tqdm',
-  "numpy<=1.26.4", 
+  "numpy", 
   "scipy",
-  "matplotlib",
-  "Pillow",
-  "itk-elastix",
   "scikit-image",
-
-#  "SimpleITK", 
+  "zarr",
+  "dask",
+  "requests",
 ]
 
 # optional information
@@ -50,8 +48,8 @@ keywords = ['python', "medical imaging", "motion correction", "registration"]
 requires-python = ">=3.6"
 
 [project.urls]
-"Homepage" = "https://qib-sheffield.github.io/mdreg/"
-"Source Code" = "https://github.com/QIB-Sheffield/mdreg"
+"Homepage" = "https://openmiblab.github.io/mdreg"
+"Source Code" = "https://github.com/openmiblab/mdreg"
 
 [tool.setuptools]
 # ...
@@ -64,6 +62,24 @@ include-package-data = true
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[project.optional-dependencies]
+complete = [
+  'antspyx',
+  'itk-elastix',
+  "matplotlib",
+  "Pillow",
+]
+elastix = [
+  'itk-elastix',
+]
+ants = [
+  'antspyx',
+]
+plot = [
+  "matplotlib",
+  "Pillow",
+]
 
 
 

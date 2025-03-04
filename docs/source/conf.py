@@ -6,9 +6,9 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 project = 'mdreg'
-copyright = '2024, mdreg maintainers'
+copyright = '2025, mdreg maintainers'
 author = 'mdreg maintainers'
-release = '0.4.4'
+release = '0.5.0'
 
 # -- Path setup --------------------------------------------------------------
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -29,6 +29,7 @@ extensions = [
     'sphinx.ext.autosummary', # generates function/method/attribute summary lists
     'sphinx.ext.viewcode', # viewing source code
     'sphinx.ext.intersphinx', # generate links to the documentation of objects in external projects
+    'sphinx.ext.mathjax',  # Enables LaTeX rendering
     'autodocsumm',
     'myst_parser', # parser for markdown language
     'sphinx_copybutton', # copy button for code blocks
@@ -37,6 +38,7 @@ extensions = [
     'sphinx_gallery.gen_gallery', # thumbnail galleries
     'matplotlib.sphinxext.plot_directive', # to show plots in docstrings
     'sphinx_exec_code', # To execute code in rst files.
+
 ]
 
 
@@ -89,11 +91,11 @@ exclude_patterns = []
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
     'numpy': ('https://numpy.org/doc/stable/', None),
-    #'matplotlib': ('https://matplotlib.org/stable/', None),
+    'matplotlib': ('https://matplotlib.org/stable/', None),
     #'pydicom': ('https://pydicom.github.io/pydicom/stable/', None),
     #'nibabel': ('https://nipy.org/nibabel/', None),
     #'pandas': ('https://pandas.pydata.org/docs/', None),
-    #'skimage': ('https://scikit-image.org/docs/stable/', None),
+    'skimage': ('https://scikit-image.org/docs/stable/', None),
     "scipy": ('https://docs.scipy.org/doc/scipy/', None),
 }
 
@@ -111,9 +113,12 @@ always_document_param_types = True
 # The theme to use for HTML and HTML Help pages.  See the documentation for a list of builtin themes
 html_theme = 'pydata_sphinx_theme'
 html_theme_options = {
-    "github_url": "https://github.com/QIB-Sheffield/mdreg",
+    "github_url": "https://github.com/openmiblab/mdreg",
     "collapse_navigation": True,
+    "analytics": {
+        "google_analytics_id": "G-09JY3Q032V", 
     }
+}
 
 # Add any paths that contain custom static files (such as style sheets) here, relative to this directory. They are copied after the builtin static files, so a file named "default.css" will overwrite the builtin "default.css"
 html_static_path = ['_static']

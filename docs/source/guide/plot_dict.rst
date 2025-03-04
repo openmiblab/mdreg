@@ -4,8 +4,8 @@
 Plotting options
 *****************************
 
-This section provides information about the plotting options in mdreg. The 
-plotting functions are used to visualize the results of the motion correction 
-and fitting processes. 
+A number of optional plotting functions are available in `mdreg` that can 
+be helpful to visualise the data and results of the coregistration. 
 
-[... coming soon..]
+They are summarised in :ref:`plot`. In order to access them, `mdreg` must be 
+installed with *complete* or *plot* options (see :ref:`installation`). 

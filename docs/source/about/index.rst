@@ -2,10 +2,6 @@
 About
 =====
 
-.. note::
-
-   ``mdreg`` is under construction. At this stage, the API may still change and 
-   features may be deprecated without warning.
 
 `mdreg` is developed by the `medical imaging group <https://www.sheffield.ac.uk/smph/research/themes/imaging>`_ at the University of Sheffield, UK. 
 
