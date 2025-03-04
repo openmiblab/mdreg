@@ -180,6 +180,8 @@ Tutorials
 Use cases
 *********
 
+A collection of real-world applciations of the mdreg package.
+
 
 
 
@@ -209,11 +211,11 @@ Use cases
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Fit a linear 2-compartment model to a 3D DCE dataset.">
+    <div class="sphx-glr-thumbcontainer" tooltip="Fit a linear 2-compartment model to a 3D DCE dataset. ">
 
 .. only:: html
 
-  .. image:: /generated/examples/use_cases/images/thumb/sphx_glr_plot_dce_liver_thumb.gif
+  .. image:: /generated/examples/use_cases/images/thumb/sphx_glr_plot_dce_liver_thumb.png
     :alt:
 
   :ref:`sphx_glr_generated_examples_use_cases_plot_dce_liver.py`

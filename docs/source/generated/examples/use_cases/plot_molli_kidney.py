@@ -20,7 +20,7 @@ data = mdreg.fetch('MOLLI')
 array = data['array']  
 
 # Visualise the motion
-mdreg.plot.animation(array, vmin=0, vmax=1e4)
+anim = mdreg.plot.animation(array, vmin=0, vmax=1e4)
 
 #%%
 # Perform slice-by-slice motion correction
@@ -42,6 +42,7 @@ coreg, fit, transfo, pars = mdreg.fit(
         'FinalGridSpacingInPhysicalUnits': 50.0,
     },
     force_2d=True, 
+    verbose=2,
 )
 
 #%%

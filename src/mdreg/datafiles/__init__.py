@@ -1,1 +1,1 @@
-# Needs an empty init file to be created at installation
+# Needs an empty init file

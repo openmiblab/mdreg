@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**401:04.505** total execution time for 11 files **from all galleries**:
+**686:12.632** total execution time for 11 files **from all galleries**:
 
 .. container::
 
@@ -32,36 +32,36 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_large_data.py` (``..\examples\tutorials\plot_large_data.py``)
-     - 260:03.860
-     - 0.0
-   * - :ref:`sphx_glr_generated_examples_use_cases_plot_molli_kidney.py` (``..\examples\use_cases\plot_molli_kidney.py``)
-     - 79:40.792
-     - 0.0
    * - :ref:`sphx_glr_generated_examples_use_cases_plot_dce_liver.py` (``..\examples\use_cases\plot_dce_liver.py``)
-     - 34:36.017
-     - 0.0
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_options.py` (``..\examples\tutorials\plot_coreg_options.py``)
-     - 09:53.269
-     - 0.0
-   * - :ref:`sphx_glr_generated_examples_use_cases_plot_vfa_liver.py` (``..\examples\use_cases\plot_vfa_liver.py``)
-     - 04:48.548
-     - 0.0
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_model_selection.py` (``..\examples\tutorials\plot_model_selection.py``)
-     - 03:55.447
-     - 0.0
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_models_options.py` (``..\examples\tutorials\plot_models_options.py``)
-     - 02:22.175
-     - 0.0
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_multislice.py` (``..\examples\tutorials\plot_multislice.py``)
-     - 02:06.875
+     - 686:12.632
      - 0.0
    * - :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_groupwise.py` (``..\examples\tutorials\plot_coreg_groupwise.py``)
-     - 02:02.708
+     - 00:00.000
      - 0.0
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_model_fitting.py` (``..\examples\tutorials\plot_model_fitting.py``)
-     - 00:51.037
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_options.py` (``..\examples\tutorials\plot_coreg_options.py``)
+     - 00:00.000
      - 0.0
    * - :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_pairwise.py` (``..\examples\tutorials\plot_coreg_pairwise.py``)
-     - 00:43.777
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_large_data.py` (``..\examples\tutorials\plot_large_data.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_model_fitting.py` (``..\examples\tutorials\plot_model_fitting.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_model_selection.py` (``..\examples\tutorials\plot_model_selection.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_models_options.py` (``..\examples\tutorials\plot_models_options.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_multislice.py` (``..\examples\tutorials\plot_multislice.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_use_cases_plot_molli_kidney.py` (``..\examples\use_cases\plot_molli_kidney.py``)
+     - 00:00.000
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_use_cases_plot_vfa_liver.py` (``..\examples\use_cases\plot_vfa_liver.py``)
+     - 00:00.000
      - 0.0

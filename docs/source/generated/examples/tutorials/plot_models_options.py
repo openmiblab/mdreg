@@ -17,7 +17,7 @@ from scipy.optimize import curve_fit
 import mdreg
 
 # Load test data
-data = mdreg.fetch('MOLLI_small')
+data = mdreg.fetch('MOLLI')
 array = data['array'][:,:,0,:]
 
 #%%
@@ -74,7 +74,7 @@ my_fit = {
 coreg, fit, defo, pars = mdreg.fit(array, fit_image=my_fit)
 
 # Visualise the results
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 
 #%%
 # In this case, the same result can be obtained using the built-in function  
@@ -125,14 +125,14 @@ my_pixel_fit = {
 
 #%%
 # And this can be provided directly to `~mdreg.mdreg.fit` via the keyword argument 
-# *fit_pixel** - instructing ``mdreg`` to perform pixel-based fitting using 
+# *fit_pixels** - instructing ``mdreg`` to perform pixel-based fitting using 
 # the parameters defined in *my_pixel_fit*:
 
 # Perform model-driven coregistration with a custom pixel model
-coreg, fit, defo, pars = mdreg.fit(array, fit_pixel=my_pixel_fit)
+coreg, fit, defo, pars = mdreg.fit(array, fit_pixels=my_pixel_fit)
 
 # Visualise the results
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 
 #%%
 # As expected, the result is the same as before using the built-in model 

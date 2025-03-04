@@ -144,7 +144,7 @@ We first use elastix to coregister the images:
 
  .. code-block:: none
 
-    elastix computation time: 18 seconds.
+    elastix computation time: 4 seconds.
 
 
 
@@ -261,7 +261,7 @@ try it on our problem:
 
  .. code-block:: none
 
-    skimage computation time: 5 seconds.
+    skimage computation time: 2 seconds.
 
 
 
@@ -372,7 +372,7 @@ Let's run this a final time with the third package wrapped in mdreg -
 
  .. code-block:: none
 
-    ANTs computation time: 5 seconds.
+    ANTs computation time: 1 seconds.
 
 
 
@@ -437,7 +437,7 @@ image again:
 
  .. code-block:: none
 
-    Difference between coregistered and deformed: 0.00010519742500036955 %
+    Difference between coregistered and deformed: 0.000103812686575111 %
 
 
 
@@ -494,7 +494,7 @@ called with return_transfo=False:
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 43.777 seconds)
+   **Total running time of the script:** (0 minutes 10.599 seconds)
 
 
 .. _sphx_glr_download_generated_examples_tutorials_plot_coreg_pairwise.py:

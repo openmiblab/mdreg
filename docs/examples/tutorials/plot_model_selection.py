@@ -52,7 +52,7 @@ anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 # Perform model-driven coregistration with default settings
 coreg, fit, defo, pars = mdreg.fit(
     array,
-    fit_pixel = {
+    fit_pixels = {
         'model': mdreg.lin,
         'p0': [1, 0],
     },
@@ -71,7 +71,7 @@ anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 # Let's step up the complexity once again and fit with a quadratic model: 
 coreg, fit, defo, pars = mdreg.fit(
     array,
-    fit_pixel = {
+    fit_pixels = {
         'model': mdreg.quad,
         'p0': [1, 0, 0],
     },
@@ -89,7 +89,7 @@ anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 # We'll skip a step and go straight to fourth order:
 coreg, fit, defo, pars = mdreg.fit(
     array,
-    fit_pixel = {
+    fit_pixels = {
         'model': mdreg.ofour,
         'p0': [1, 0, 0, 0, 0],
     },
@@ -114,7 +114,7 @@ anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 # changes well:
 coreg, fit, defo, pars = mdreg.fit(
     array,
-    fit_pixel = {
+    fit_pixels = {
         'model': mdreg.abs_exp_recovery_2p,
         'p0': [1, 1],
         'xdata': np.array(data['TI'])/1000,
@@ -130,7 +130,7 @@ anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 # does help to improve further: 
 coreg, fit, defo, pars = mdreg.fit(
     array,
-    fit_pixel = {
+    fit_pixels = {
         'model': mdreg.abs_exp_recovery_2p,
         'p0': [1, 1],
         'xdata': np.array(data['TI'])/1000,

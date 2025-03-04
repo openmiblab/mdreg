@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**281:59.148** total execution time for 8 files **from generated\examples\tutorials**:
+**313:25.966** total execution time for 8 files **from generated\examples\tutorials**:
 
 .. container::
 
@@ -33,26 +33,26 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_generated_examples_tutorials_plot_large_data.py` (``plot_large_data.py``)
-     - 260:03.860
-     - 0.0
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_options.py` (``plot_coreg_options.py``)
-     - 09:53.269
-     - 0.0
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_model_selection.py` (``plot_model_selection.py``)
-     - 03:55.447
-     - 0.0
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_models_options.py` (``plot_models_options.py``)
-     - 02:22.175
-     - 0.0
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_multislice.py` (``plot_multislice.py``)
-     - 02:06.875
-     - 0.0
-   * - :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_groupwise.py` (``plot_coreg_groupwise.py``)
-     - 02:02.708
+     - 108:53.125
      - 0.0
    * - :ref:`sphx_glr_generated_examples_tutorials_plot_model_fitting.py` (``plot_model_fitting.py``)
-     - 00:51.037
+     - 64:33.466
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_options.py` (``plot_coreg_options.py``)
+     - 55:09.884
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_model_selection.py` (``plot_model_selection.py``)
+     - 45:36.591
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_multislice.py` (``plot_multislice.py``)
+     - 21:18.343
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_models_options.py` (``plot_models_options.py``)
+     - 17:12.603
+     - 0.0
+   * - :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_groupwise.py` (``plot_coreg_groupwise.py``)
+     - 00:31.356
      - 0.0
    * - :ref:`sphx_glr_generated_examples_tutorials_plot_coreg_pairwise.py` (``plot_coreg_pairwise.py``)
-     - 00:43.777
+     - 00:10.599
      - 0.0

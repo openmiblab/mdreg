@@ -3,6 +3,7 @@ import sys
 import pickle
 import requests
 import zarr
+import zipfile
 
 # filepaths need to be identified with importlib_resources
 # rather than __file__ as the latter does not work at runtime
@@ -343,7 +344,11 @@ def _fetch_dataset(dataset, ext):
             return pickle.load(f)
         
     if ext=='.zip':
-        return zarr.open_array(datafile, mode='r')
+        extracted = os.path.join(os.path.dirname(datafile), dataset)
+        if not os.path.exists(extracted):
+            with zipfile.ZipFile(datafile, 'r') as z:
+                z.extractall(extracted)
+        return zarr.open(extracted, mode='r')
 
 
 def _download(dataset, ext):

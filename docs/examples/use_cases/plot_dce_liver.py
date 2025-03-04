@@ -3,7 +3,11 @@
 3D DCE-MRI in the liver
 ===========================================================
 
-Fit a linear 2-compartment model to a 3D DCE dataset.
+Fit a linear 2-compartment model to a 3D DCE dataset. 
+
+Note: this is a large real-world dataset, and the computation may 
+take several hours. In order to test this with a smaller dataset, 
+you can use the `DCE_small` dataset.
 """
 
 #%% 
@@ -17,20 +21,20 @@ import numpy as np
 import mdreg
 
 # We use zarray data in this example
-data = mdreg.fetch_zarr('DCE_small')
+data = mdreg.fetch_zarr('DCE')
 
 # Variables used in this script
 tacq = data.attrs['time'] 
 aif = data.attrs['aif']  
 spacing = data.attrs['spacing']
+t0, t1 = 100, 150
 
 # Path for output
 results_path = os.path.join(os.getcwd(), 'tmp')
 
 # Check the data
 anim = mdreg.plot.animation(
-    #data[:,:,20:24,100:150], 
-    data, 
+    data[:, :, :, t0:t1], 
     title='DCE Data', 
     vmin=0,
     vmax=0.9*np.max(data[...,0]),
@@ -52,13 +56,8 @@ coreg, fit, transfo, pars = mdreg.fit(
         'aif': aif,                     # Signal-time curve in the aorta
         'baseline': 5,                  # Nr of precontrast samples 
     },
-    fit_coreg = {
-        'package': 'elastix',
-        'spacing': spacing,
-        'FinalGridSpacingInPhysicalUnits': 50.0,
-    },
-    maxit = 3,
-    path = results_path,
+    maxit=3,
+    path=results_path,
     verbose=2,
 )
 
@@ -67,8 +66,7 @@ print(f"Computation time: {round(time.time()-t)} seconds.")
 #%% 
 # Check the result
 anim = mdreg.plot.animation(
-    #coreg[:,:,20:24,100:150],
-    coreg, 
+    coreg[:, :, :, t0:t1],
     title='DCE motion corrected', 
     vmin=0,
     vmax=0.9*np.max(data[...,0]),

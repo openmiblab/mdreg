@@ -19,7 +19,7 @@ import mdreg
 
 #%%
 # Fetch the multi-slice MOLLI dataset
-data = mdreg.fetch('MOLLI_small')
+data = mdreg.fetch('MOLLI')
 
 # Get the relevant variables (3D data)
 array = data['array'] 
@@ -50,7 +50,7 @@ print(f'The deformation field has {defo.shape[-1]} components.')
 
 #%%
 # Visualise the results
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 
 #%%
 # Different options per slice
@@ -112,9 +112,9 @@ print(f'3D transformation shape: {transfo.shape}')
 # Slice by slice with pixel models
 # --------------------------------
 # If the signal model fit is defined with a custom model via the 
-# *fit_pixel* argument, the slice-by-slice operation works the same: 
+# *fit_pixels* argument, the slice-by-slice operation works the same: 
 # set the *force_2d* keyword to True, and - if each slice has 
-# different parameter settings - supply the *fit_pixel* 
+# different parameter settings - supply the *fit_pixels* 
 # argument as a list of dictionaries.
 
 molli = [
@@ -129,7 +129,7 @@ molli = [
 
 coreg, fit, transfo, pars = mdreg.fit(
     array, 
-    fit_pixel=molli, 
+    fit_pixels=molli, 
     force_2d=True,
     maxit=1,
 )

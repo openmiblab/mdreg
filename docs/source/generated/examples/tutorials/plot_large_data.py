@@ -61,7 +61,7 @@ modelfit = {
 t = time.time()
 coreg, fit, defo, pars = mdreg.fit(
     data[:], 
-    fit_pixel=modelfit, 
+    fit_pixels=modelfit, 
     maxit=1,
 )
 print(f"Computation time: {round(time.time()-t)} seconds.")
@@ -84,7 +84,7 @@ fig = mdreg.plot.par(pars[...,0], title='S0', vmin=0,
 t = time.time()
 coreg, fit, defo, pars = mdreg.fit(
     data, 
-    fit_pixel=modelfit, 
+    fit_pixels=modelfit, 
     maxit=1,
 )
 print(f"Computation time: {round(time.time()-t)} seconds.")
@@ -118,7 +118,7 @@ t = time.time()
 coreg, fit, defo, pars = mdreg.fit(
     data, 
     path=path, 
-    fit_pixel=modelfit, 
+    fit_pixels=modelfit, 
     maxit=1,
 )
 print(f"Computation time: {round(time.time()-t)} seconds.")
@@ -143,7 +143,7 @@ t = time.time()
 coreg, fit, defo, pars = mdreg.fit(
     data, 
     path=path, 
-    fit_pixel=modelfit,
+    fit_pixels=modelfit,
     maxit=1,
 )
 print(f"Computation time: {round(time.time()-t)} seconds.")

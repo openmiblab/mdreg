@@ -17,7 +17,7 @@ import mdreg
 #%%
 # fetch test data
 
-data = mdreg.fetch('MOLLI_small')
+data = mdreg.fetch('MOLLI')
 
 # We will consider the slice z=0 of the data array:
 array = data['array'][:,:,0,:]
@@ -33,7 +33,7 @@ array = data['array'][:,:,0,:]
 coreg, fit, defo, pars = mdreg.fit(array)
 
 # And visualise the results
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
 
 
 # %%
@@ -52,13 +52,13 @@ mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 # Perform model-driven coregistration with default settings
 coreg, fit, defo, pars = mdreg.fit(
     array,
-    fit_pixel = {
+    fit_pixels = {
         'model': mdreg.lin,
         'p0': [1, 0],
     },
 )
 # And visualise the results
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
 
 #%%
 # Still not a great motion correction (right). The model fit (left) shows that 
@@ -71,12 +71,12 @@ mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 # Let's step up the complexity once again and fit with a quadratic model: 
 coreg, fit, defo, pars = mdreg.fit(
     array,
-    fit_pixel = {
+    fit_pixels = {
         'model': mdreg.quad,
         'p0': [1, 0, 0],
     },
 )
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
 
 #%%
 # This now captures the signal changes better, leading to an improved motion 
@@ -89,12 +89,12 @@ mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 # We'll skip a step and go straight to fourth order:
 coreg, fit, defo, pars = mdreg.fit(
     array,
-    fit_pixel = {
+    fit_pixels = {
         'model': mdreg.ofour,
         'p0': [1, 0, 0, 0, 0],
     },
 )
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
 
 # %%
 # This now appears to have made it worse: there is more motion again in the 
@@ -114,14 +114,14 @@ mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 # changes well:
 coreg, fit, defo, pars = mdreg.fit(
     array,
-    fit_pixel = {
+    fit_pixels = {
         'model': mdreg.abs_exp_recovery_2p,
         'p0': [1, 1],
         'xdata': np.array(data['TI'])/1000,
         'func_init':mdreg.abs_exp_recovery_2p_init,
     },
 )
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
 
 #%%
 # This show the best result so far, despite the model only having 2 free 
@@ -130,7 +130,7 @@ mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4)
 # does help to improve further: 
 coreg, fit, defo, pars = mdreg.fit(
     array,
-    fit_pixel = {
+    fit_pixels = {
         'model': mdreg.abs_exp_recovery_2p,
         'p0': [1, 1],
         'xdata': np.array(data['TI'])/1000,
@@ -140,7 +140,7 @@ coreg, fit, defo, pars = mdreg.fit(
         'attachment': 30,
     },
 )
-mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
+anim = mdreg.plot.series(array, fit, coreg, vmin=0, vmax=1e4) 
 
 # sphinx_gallery_start_ignore
 

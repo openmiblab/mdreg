@@ -115,7 +115,10 @@ html_theme = 'pydata_sphinx_theme'
 html_theme_options = {
     "github_url": "https://github.com/openmiblab/mdreg",
     "collapse_navigation": True,
+    "analytics": {
+        "google_analytics_id": "G-09JY3Q032V", 
     }
+}
 
 # Add any paths that contain custom static files (such as style sheets) here, relative to this directory. They are copied after the builtin static files, so a file named "default.css" will overwrite the builtin "default.css"
 html_static_path = ['_static']

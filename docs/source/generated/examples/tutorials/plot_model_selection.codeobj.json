@@ -1,4 +1,20 @@
 {
+ "anim": [
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib.animation",
+   "module_short": "matplotlib.animation",
+   "name": "ArtistAnimation"
+  },
+  {
+   "is_class": false,
+   "is_explicit": false,
+   "module": "matplotlib",
+   "module_short": "matplotlib",
+   "name": "ArtistAnimation"
+  }
+ ],
  "array": [
   {
    "is_class": false,
