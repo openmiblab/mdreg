@@ -1,0 +1,1553 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mdreg.fit_models &#8212; mdreg 0.5.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=cd8af66b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=1dd76d02"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-09JY3Q032V"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-09JY3Q032V');
+            </script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-09JY3Q032V');
+            </script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/mdreg/fit_models';</script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/tristan-logo.jpg" class="logo__image only-light" alt="mdreg 0.5.0 documentation - Home"/>
+    <img src="../../_static/tristan-logo.jpg" class="logo__image only-dark pst-js-only" alt="mdreg 0.5.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/index.html">
+    Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../generated/examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contribute/index.html">
+    Contribute
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../releases/index.html">
+    Releases
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../about/index.html">
+    About
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/openmiblab/mdreg" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../guide/index.html">
+    User guide
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/index.html">
+    Reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../generated/examples/index.html">
+    Examples
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../contribute/index.html">
+    Contribute
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../releases/index.html">
+    Releases
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../about/index.html">
+    About
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/openmiblab/mdreg" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Module code</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">mdreg.fit_models</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for mdreg.fit_models</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">zarr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dask</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dask.array</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">da</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.integrate</span><span class="w"> </span><span class="kn">import</span> <span class="n">cumulative_trapezoid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">curve_fit</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">mdreg</span><span class="w"> </span><span class="kn">import</span> <span class="n">pixel_models</span><span class="p">,</span> <span class="n">io</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_func_init</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">p0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">p0</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fit_func</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">func_init</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+    <span class="n">p0</span> <span class="o">=</span> <span class="n">func_init</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">,</span> <span class="n">p0</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">p0</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">p</span><span class="o">&lt;</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial value </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> for parameter </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> is &quot;</span>
+                                 <span class="sa">f</span><span class="s2">&quot;below the lower bound </span><span class="si">{</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">p</span><span class="o">&lt;</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial value </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> for parameter </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> is &quot;</span>
+                                 <span class="sa">f</span><span class="s2">&quot;below the lower bound </span><span class="si">{</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">p</span><span class="o">&gt;</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial value </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> for parameter </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> is &quot;</span>
+                                 <span class="sa">f</span><span class="s2">&quot;above the upper bound </span><span class="si">{</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">p</span><span class="o">&gt;</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial value </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2"> for parameter </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> is &quot;</span>
+                                 <span class="sa">f</span><span class="s2">&quot;above the upper bound </span><span class="si">{</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+            
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">p</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">curve_fit</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> 
+            <span class="n">xdata</span> <span class="o">=</span> <span class="n">xdata</span><span class="p">,</span> 
+            <span class="n">ydata</span> <span class="o">=</span> <span class="n">ydata</span><span class="p">,</span> 
+            <span class="n">p0</span> <span class="o">=</span> <span class="n">p0</span><span class="p">,</span> 
+            <span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span> 
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> 
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">p</span>
+    <span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">p0</span>
+    
+
+<div class="viewcode-block" id="fit_pixels">
+<a class="viewcode-back" href="../../generated/api/mdreg.fit_pixels.html#mdreg.fit_pixels">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fit_pixels</span><span class="p">(</span><span class="n">ydata</span><span class="p">,</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">p0</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">xdata</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> 
+        <span class="n">func_init</span> <span class="o">=</span> <span class="n">_func_init</span><span class="p">,</span>
+        <span class="n">parallel</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">progress_bar</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">),</span>  
+        <span class="n">memdim</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>      
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> 
+    <span class="p">):</span>
+
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fit a model pixel-wise</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ydata : numpy.ndarray | zarr.Array</span>
+<span class="sd">        2D or 3D array of signal intensities</span>
+<span class="sd">    model : function</span>
+<span class="sd">        Model function to fit to the data (required). Model functions need to </span>
+<span class="sd">        have one argument *xdata* followed by the free parameters of the model. </span>
+<span class="sd">        The return value is the signal at each value of *xdata*. </span>
+<span class="sd">    p0 : array</span>
+<span class="sd">        Initial guess for the model parameters (required)</span>
+<span class="sd">    xdata : array-like</span>
+<span class="sd">        Independent variables for the model. If this is not provided, an </span>
+<span class="sd">        index array is used.</span>
+<span class="sd">    func_init : function</span>
+<span class="sd">        Function to initialize the model parameters. It must take *xdata* and </span>
+<span class="sd">        *ydata* as arguments, followed by *p0* (see below). It returns </span>
+<span class="sd">        estimates for the free model parameters as a tuple.</span>
+<span class="sd">    parallel : bool</span>
+<span class="sd">        Option to perform fitting in parallel. Default is True.</span>
+<span class="sd">    progress_bar : bool</span>
+<span class="sd">        Option to display a progress bar. This option is ignored when </span>
+<span class="sd">        parallel = True. Default is True.</span>
+<span class="sd">    path : str, optional</span>
+<span class="sd">        Path on disk where to save the results. If no path is provided, the </span>
+<span class="sd">        results are not saved to disk. Defaults to None.</span>
+<span class="sd">    memdim : int</span>
+<span class="sd">        Number of array dimensions to be held in memory at any one time. </span>
+<span class="sd">        Possible values for memdim range from 0 (pixel-by-pixel processing) </span>
+<span class="sd">        to ydata.ndim-1 (process the whole array at once). With memdim=1,</span>
+<span class="sd">        data are loaded and processed row-by-row, with memdim=2 the are </span>
+<span class="sd">        processed slice-by-slice, and so on. Default is 2.</span>
+<span class="sd">    bounds : tuple</span>
+<span class="sd">        Bounds for the model parameters, in the format required by </span>
+<span class="sd">        scipy.curve_fit. Note the initial value p0 needs to </span>
+<span class="sd">        be contained in the bounds.</span>
+<span class="sd">    **kwargs : Any additional arguments accepted by scipy.curve_fit().</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    fit : numpy.ndarray | zarr.Array</span>
+<span class="sd">        The fitted signal model with the same dimensions as *arr*.</span>
+<span class="sd">    pars : numpy.ndarray | zarr.Array</span>
+<span class="sd">        The parameters of the fitted signal model with dimensions (x,y,n) or </span>
+<span class="sd">        (x,y,z,n), where n is the number of free parameters of the signal </span>
+<span class="sd">        model.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check parameters</span>
+    <span class="k">if</span> <span class="n">model</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;model is a required argument&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">p0</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;p0 is a required argument&#39;</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">xdata</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">xdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">ydata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">ydata</span><span class="p">,</span> <span class="n">zarr</span><span class="o">.</span><span class="n">Array</span><span class="p">):</span>
+        <span class="n">fit</span><span class="p">,</span> <span class="n">par</span> <span class="o">=</span> <span class="n">_fit_pixels_zarr</span><span class="p">(</span>
+            <span class="n">ydata</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">func_init</span><span class="p">,</span> <span class="n">parallel</span><span class="p">,</span> <span class="n">progress_bar</span><span class="p">,</span> 
+            <span class="n">bounds</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">memdim</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">fit</span><span class="p">,</span> <span class="n">par</span> <span class="o">=</span> <span class="n">_fit_pixels_numpy</span><span class="p">(</span>
+            <span class="n">ydata</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">func_init</span><span class="p">,</span> <span class="n">parallel</span><span class="p">,</span> <span class="n">progress_bar</span><span class="p">,</span> 
+            <span class="n">bounds</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;fit&#39;</span><span class="p">),</span> <span class="n">fit</span><span class="p">)</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;pars&#39;</span><span class="p">),</span> <span class="n">par</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span></div>
+
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fit_pixels_numpy</span><span class="p">(</span>
+        <span class="n">ydata</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">func_init</span><span class="p">,</span> <span class="n">parallel</span><span class="p">,</span> <span class="n">progress_bar</span><span class="p">,</span> 
+        <span class="n">bounds</span><span class="p">,</span>  <span class="n">p0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">ydata</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">ydata</span> <span class="o">=</span> <span class="n">ydata</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">nx</span><span class="p">,</span> <span class="n">nt</span> <span class="o">=</span> <span class="n">ydata</span><span class="o">.</span><span class="n">shape</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">parallel</span><span class="p">:</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+                <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">),</span> <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Fitting pixels&#39;</span><span class="p">,</span> <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">progress_bar</span><span class="p">,</span>
+            <span class="p">):</span>
+            <span class="n">p_x</span> <span class="o">=</span> <span class="n">_fit_func</span><span class="p">(</span>
+                <span class="n">model</span><span class="p">,</span> <span class="n">func_init</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">[</span><span class="n">x</span><span class="p">,:],</span> <span class="n">p0</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">p</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">p_x</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">tasks</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
+            <span class="n">task_x</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">delayed</span><span class="p">(</span><span class="n">_fit_func</span><span class="p">)(</span>
+                <span class="n">model</span><span class="p">,</span> <span class="n">func_init</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">ydata</span><span class="p">[</span><span class="n">x</span><span class="p">,:],</span> <span class="n">p0</span><span class="p">,</span> <span class="n">bounds</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">tasks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">task_x</span><span class="p">)</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+
+    <span class="c1"># Compute output arrays</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">par</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span> 
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span> <span class="n">nt</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
+        <span class="n">par</span><span class="p">[</span><span class="n">x</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+        <span class="n">fit</span><span class="p">[</span><span class="n">x</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">xdata</span><span class="p">,</span> <span class="o">*</span><span class="nb">tuple</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="n">x</span><span class="p">]))</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">par</span> <span class="o">=</span> <span class="n">par</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="n">n</span><span class="p">,))</span>
+
+    <span class="k">return</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fit_pixels_zarr</span><span class="p">(</span>
+        <span class="n">ydata</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">func_init</span><span class="p">,</span> <span class="n">parallel</span><span class="p">,</span> <span class="n">progress_bar</span><span class="p">,</span> 
+        <span class="n">bounds</span><span class="p">,</span> <span class="n">p0</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">memdim</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    
+    <span class="k">if</span> <span class="n">memdim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">memdim</span> <span class="o">=</span> <span class="n">ydata</span><span class="o">.</span><span class="n">ndim</span><span class="o">-</span><span class="mi">1</span>
+    
+    <span class="c1"># Dimension of data in memory</span>
+    <span class="k">if</span> <span class="n">memdim</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;memdim cannot be negative.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">memdim</span> <span class="o">&gt;</span> <span class="n">ydata</span><span class="o">.</span><span class="n">ndim</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;memdim cannot be larger than ydata.ndim-1.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Get the shape and number of slice dimensions</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">ydata</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">memdim</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">))</span>
+
+    <span class="c1"># All indices in slice and time dimensions</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">memdim</span><span class="p">)])</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> 
+            <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Fitting zarray&#39;</span><span class="p">,</span> 
+            <span class="n">disable</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">progress_bar</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">),</span>
+        <span class="p">):</span>
+
+        <span class="c1"># Convert flat index to multi-index</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
+
+        <span class="c1"># Load slice z into memory</span>
+        <span class="n">ydata_k</span> <span class="o">=</span> <span class="n">ydata</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">z</span> <span class="o">+</span> <span class="n">t</span><span class="p">]</span>
+
+        <span class="c1"># Fit in memory</span>
+        <span class="n">fit_k</span><span class="p">,</span> <span class="n">par_k</span> <span class="o">=</span> <span class="n">_fit_pixels_numpy</span><span class="p">(</span>
+            <span class="n">ydata_k</span><span class="p">,</span> <span class="n">model</span><span class="p">,</span> <span class="n">xdata</span><span class="p">,</span> <span class="n">func_init</span><span class="p">,</span> <span class="n">parallel</span><span class="p">,</span> 
+            <span class="n">progress_bar</span><span class="o">=</span><span class="n">progress_bar</span> <span class="ow">and</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">),</span> 
+            <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="n">p0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        
+        <span class="c1"># If this is the first slice, create the zarrays</span>
+        <span class="k">if</span> <span class="n">k</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+            <span class="n">fit</span><span class="p">,</span> <span class="n">par</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">_fit_models_init</span><span class="p">(</span><span class="n">ydata</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">par_k</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="c1"># Save results for slize z in the zarray</span>
+        <span class="n">fit</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">z</span> <span class="o">+</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">fit_k</span>
+        <span class="n">par</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">z</span> <span class="o">+</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">par_k</span>
+
+    <span class="k">return</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span>
+
+
+
+<div class="viewcode-block" id="fit_constant">
+<a class="viewcode-back" href="../../generated/api/mdreg.fit_constant.html#mdreg.fit_constant">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fit_constant</span><span class="p">(</span><span class="n">signal</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">zarr</span><span class="o">.</span><span class="n">Array</span><span class="p">]):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fit to a constant.</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        S(\mathbf{r},t) = S_0(\mathbf{r})</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        signal : numpy.ndarray | zarr.Array </span>
+<span class="sd">            3D or 4D array with signal intensities. Dimensions are (x, y, t) </span>
+<span class="sd">            or (x, y, z, t).</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        fit : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fit to the signal data, with same dimensions as the signal array.</span>
+<span class="sd">        pars : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fitted model parameter S0. Dimensions are (x,y,1) or (x,y,z,1). </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">zarr</span><span class="o">.</span><span class="n">Array</span><span class="p">):</span>
+        <span class="n">signal</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">from_zarr</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">signal</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">from_array</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">avr</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> 
+    <span class="n">par</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">avr</span><span class="p">,</span> <span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span><span class="p">,))</span>
+    <span class="n">par</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">par</span><span class="p">,</span> <span class="n">repeats</span><span class="o">=</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">fit</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span></div>
+
+
+
+
+<div class="viewcode-block" id="fit_exp_decay">
+<a class="viewcode-back" href="../../generated/api/mdreg.fit_exp_decay.html#mdreg.fit_exp_decay">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fit_exp_decay</span><span class="p">(</span>
+        <span class="n">signal</span><span class="p">,</span>
+        <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="o">=</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]),</span>
+        <span class="n">p0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span> 
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fit to an exponential decay.</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        S(\mathbf{r},t) = S_0(\mathbf{r}) e^{-t/T(\mathbf{r})}</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        signal : numpy.ndarray | zarr.Array </span>
+<span class="sd">            3D or 4D array with signal intensities. Dimensions are (x, y, t) </span>
+<span class="sd">            or (x, y, z, t).</span>
+<span class="sd">        time : numpy.ndarray</span>
+<span class="sd">            Timepoints of the signal data</span>
+<span class="sd">        parallel : bool</span>
+<span class="sd">            If True, use parallel processing. Default is False</span>
+<span class="sd">        bounds : tuple </span>
+<span class="sd">            Bounds for the fit as (lower_bound, upper_bound) where lower_bound </span>
+<span class="sd">            and upper_bound are either a scalar or a list of 2 values.</span>
+<span class="sd">        p0 : list</span>
+<span class="sd">            Initial values as a 2-element list.</span>
+<span class="sd">        **kwargs :</span>
+<span class="sd">            Additional keyword arguments accepted by fit_pixels.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        fit : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fitted to the signal data, with same dimensions as the signal array.</span>
+<span class="sd">        pars : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fitted model parameters S0 and T. Dimensions are (x,y,2) or </span>
+<span class="sd">            (x,y,z,2).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;time is a required argument.&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">fit_pixels</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">pixel_models</span><span class="o">.</span><span class="n">exp_decay</span><span class="p">,</span> 
+        <span class="n">xdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">time</span><span class="p">),</span>
+        <span class="n">func_init</span> <span class="o">=</span> <span class="n">pixel_models</span><span class="o">.</span><span class="n">exp_decay_init</span><span class="p">,</span>
+        <span class="n">parallel</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">,</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span>
+        <span class="n">p0</span> <span class="o">=</span> <span class="n">p0</span><span class="p">,</span> 
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="fit_abs_exp_recovery_2p">
+<a class="viewcode-back" href="../../generated/api/mdreg.fit_abs_exp_recovery_2p.html#mdreg.fit_abs_exp_recovery_2p">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fit_abs_exp_recovery_2p</span><span class="p">(</span>
+        <span class="n">signal</span><span class="p">,</span> 
+        <span class="n">TI</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="o">=</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]),</span>
+        <span class="n">p0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.3</span><span class="p">],</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    2-parameter fit to an absolute exponential-recovery model fit</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        S(\mathbf{r},T_I) = \left| S_0(\mathbf{r}) \left( 1 - 2 e^{-T_I/T(\mathbf{r})} \right) \right|</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        signal : numpy.ndarray | zarr.Array</span>
+<span class="sd">            3D or 4D array with signal intensities. Dimensions are (x, y, t) </span>
+<span class="sd">            or (x, y, z, t).</span>
+<span class="sd">        TI : numpy.array</span>
+<span class="sd">            Inversion times</span>
+<span class="sd">        parallel : bool</span>
+<span class="sd">            If True, use parallel processing. Default is False.</span>
+<span class="sd">        bounds : tuple </span>
+<span class="sd">            Bounds for the fit as (lower_bound, upper_bound) where lower_bound </span>
+<span class="sd">            and upper_bound are either a scalar or a list of 2 values.</span>
+<span class="sd">        p0 : list</span>
+<span class="sd">            Initial values as a 2-element list.</span>
+<span class="sd">        **kwargs :</span>
+<span class="sd">            Additional keyword arguments accepted by fit_pixels.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        fit : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fit to the signal data, with same dimensions as the signal array.</span>
+<span class="sd">        pars : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fitted model parameters S0 and T. Dimensions are (x,y,2) or </span>
+<span class="sd">            (x,y,z,2).</span>
+<span class="sd">        </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">TI</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;TI is a required parameter.&#39;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fit_pixels</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> 
+        <span class="n">model</span><span class="o">=</span><span class="n">pixel_models</span><span class="o">.</span><span class="n">abs_exp_recovery_2p</span><span class="p">,</span> 
+        <span class="n">xdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">TI</span><span class="p">),</span>
+        <span class="n">func_init</span> <span class="o">=</span> <span class="n">pixel_models</span><span class="o">.</span><span class="n">abs_exp_recovery_2p_init</span><span class="p">,</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span>
+        <span class="n">p0</span> <span class="o">=</span> <span class="n">p0</span><span class="p">,</span> 
+        <span class="n">parallel</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> 
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="fit_exp_recovery_2p">
+<a class="viewcode-back" href="../../generated/api/mdreg.fit_exp_recovery_2p.html#mdreg.fit_exp_recovery_2p">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fit_exp_recovery_2p</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> 
+        <span class="n">TI</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="o">=</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]),</span>
+        <span class="n">p0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.3</span><span class="p">],</span> 
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    2-parameter fit to an exponential recovery model</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        S(\mathbf{r},T_I) = S_0(\mathbf{r}) \left( 1 - 2 e^{-T_I/T(\mathbf{r})} \right)</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        signal : numpy.ndarray | zarr.Array</span>
+<span class="sd">            3D or 4D array with signal intensities. Dimensions are (x, y, t) </span>
+<span class="sd">            or (x, y, z, t).</span>
+<span class="sd">        TI : numpy.array</span>
+<span class="sd">            Inversion times</span>
+<span class="sd">        parallel : bool</span>
+<span class="sd">            If True, use parallel processing. Default is False.</span>
+<span class="sd">        bounds : tuple </span>
+<span class="sd">            Bounds for the fit as (lower_bound, upper_bound) where lower_bound </span>
+<span class="sd">            and upper_bound are either a scalar or a list of 2 values.</span>
+<span class="sd">        p0 : list</span>
+<span class="sd">            Initial values as a 2-element list.</span>
+<span class="sd">        **kwargs :</span>
+<span class="sd">            Additional keyword arguments accepted by fit_pixels.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        fit : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fit to the signal data, with same dimensions as the signal array.</span>
+<span class="sd">        pars : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fitted model parameters S0 and T. Dimensions are (x,y,2) or </span>
+<span class="sd">            (x,y,z,2).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">TI</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;TI is a required parameter.&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">fit_pixels</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> 
+        <span class="n">model</span><span class="o">=</span><span class="n">pixel_models</span><span class="o">.</span><span class="n">exp_recovery_2p</span><span class="p">,</span> 
+        <span class="n">xdata</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">TI</span><span class="p">),</span>
+        <span class="n">func_init</span><span class="o">=</span><span class="n">pixel_models</span><span class="o">.</span><span class="n">exp_recovery_2p_init</span><span class="p">,</span>
+        <span class="n">parallel</span><span class="o">=</span><span class="n">parallel</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
+        <span class="n">p0</span><span class="o">=</span><span class="n">p0</span><span class="p">,</span> 
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> 
+    <span class="p">)</span></div>
+
+
+
+
+<div class="viewcode-block" id="fit_abs_exp_recovery_3p">
+<a class="viewcode-back" href="../../generated/api/mdreg.fit_abs_exp_recovery_3p.html#mdreg.fit_abs_exp_recovery_3p">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fit_abs_exp_recovery_3p</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> 
+        <span class="n">TI</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="o">=</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+        <span class="n">p0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> 
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    2-parameter fit to an absolute exponential-recovery model fit.</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        S(\mathbf{r},T_I) = \left| S_0(\mathbf{r}) \left( 1 - A(\mathbf{r}) e^{-T_I/T(\mathbf{r})} \right) \right|</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        signal : numpy.ndarray | zarr.Array</span>
+<span class="sd">            3D or 4D array with signal intensities. Dimensions are (x, y, t) </span>
+<span class="sd">            or (x, y, z, t).</span>
+<span class="sd">        TI : numpy.array</span>
+<span class="sd">            Inversion times</span>
+<span class="sd">        parallel : bool</span>
+<span class="sd">            If True, use parallel processing. Default is False.</span>
+<span class="sd">        bounds : tuple </span>
+<span class="sd">            Bounds for the fit as (lower_bound, upper_bound) where lower_bound </span>
+<span class="sd">            and upper_bound are either a scalar or a list of 3 values.</span>
+<span class="sd">        p0 : list</span>
+<span class="sd">            Initial values as a 3-element list.</span>
+<span class="sd">        **kwargs :</span>
+<span class="sd">            Additional keyword arguments accepted by fit_pixels.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        fit : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fit to the signal data, with same dimensions as the signal array.</span>
+<span class="sd">        pars : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fitted model parameters S0, T and A. Dimensions are (x,y,3) or </span>
+<span class="sd">            (x,y,z,3).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">TI</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;TI is a required parameter.&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">fit_pixels</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> 
+        <span class="n">model</span><span class="o">=</span><span class="n">pixel_models</span><span class="o">.</span><span class="n">abs_exp_recovery_3p</span><span class="p">,</span> 
+        <span class="n">xdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">TI</span><span class="p">),</span>
+        <span class="n">func_init</span> <span class="o">=</span> <span class="n">pixel_models</span><span class="o">.</span><span class="n">abs_exp_recovery_3p_init</span><span class="p">,</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span>
+        <span class="n">p0</span> <span class="o">=</span> <span class="n">p0</span><span class="p">,</span> 
+        <span class="n">parallel</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> 
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="fit_exp_recovery_3p">
+<a class="viewcode-back" href="../../generated/api/mdreg.fit_exp_recovery_3p.html#mdreg.fit_exp_recovery_3p">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fit_exp_recovery_3p</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> 
+        <span class="n">TI</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="o">=</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+        <span class="n">p0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.3</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span> 
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    3-parameter fit to an exponential-recovery model fit.</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        S(\mathbf{r},T_I) = S_0(\mathbf{r}) \left( 1 - A(\mathbf{r}) e^{-T_I/T(\mathbf{r})} \right) </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        signal : numpy.ndarray | zarr.Array</span>
+<span class="sd">            3D or 4D array with signal intensities. Dimensions are (x, y, t) </span>
+<span class="sd">            or (x, y, z, t).</span>
+<span class="sd">        TI : numpy.array</span>
+<span class="sd">            Inversion times</span>
+<span class="sd">        parallel : bool</span>
+<span class="sd">            If True, use parallel processing. Default is False.</span>
+<span class="sd">        bounds : tuple </span>
+<span class="sd">            Bounds for the fit as (lower_bound, upper_bound) where lower_bound </span>
+<span class="sd">            and upper_bound are either a scalar or a list of 3 values.</span>
+<span class="sd">        p0 : list</span>
+<span class="sd">            Initial values as a 3-element list.</span>
+<span class="sd">        **kwargs :</span>
+<span class="sd">            Additional keyword arguments accepted by fit_pixels.</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        fit : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fit to the signal data, with same dimensions as the signal array.</span>
+<span class="sd">        pars : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fitted model parameters S0, T and A. Dimensions are (x,y,3) or </span>
+<span class="sd">            (x,y,z,3).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">TI</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;TI is a required parameter.&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">fit_pixels</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> 
+        <span class="n">model</span><span class="o">=</span><span class="n">pixel_models</span><span class="o">.</span><span class="n">exp_recovery_3p</span><span class="p">,</span> 
+        <span class="n">xdata</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">TI</span><span class="p">),</span>
+        <span class="n">func_init</span> <span class="o">=</span> <span class="n">pixel_models</span><span class="o">.</span><span class="n">exp_recovery_3p_init</span><span class="p">,</span>
+        <span class="n">parallel</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">,</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="n">bounds</span><span class="p">,</span>
+        <span class="n">p0</span> <span class="o">=</span> <span class="n">p0</span><span class="p">,</span> 
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> 
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="fit_spgr_vfa">
+<a class="viewcode-back" href="../../generated/api/mdreg.fit_spgr_vfa.html#mdreg.fit_spgr_vfa">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fit_spgr_vfa</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> 
+        <span class="n">FA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="o">=</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="mi">1</span><span class="p">]),</span>
+        <span class="n">p0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> 
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Non-linear fit to a variable flip angle model.</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        S(\mathbf{r},\alpha) = S_0(\mathbf{r}) \sin(\alpha) \frac{1 - e^{-T_R/T_1(\mathbf{r})}}{1 - \cos(\alpha) e^{-T_R/T_1(\mathbf{r})}}</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        signal : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Array with signal intensities for different flip angles (FA). </span>
+<span class="sd">            Dimensions are (x,y,FA) or (x,y,z,FA)</span>
+<span class="sd">        FA : array-like</span>
+<span class="sd">            Flip angles in degrees (required). This is a 1D array with the same</span>
+<span class="sd">            length as the last dimension of the signal array. Defaults to None.</span>
+<span class="sd">        parallel : bool</span>
+<span class="sd">            If True, use parallel processing. Default is False.</span>
+<span class="sd">        bounds : tuple </span>
+<span class="sd">            Bounds for the fit as (lower_bound, upper_bound) where lower_bound </span>
+<span class="sd">            and upper_bound are either a scalar or a list of 3 values.</span>
+<span class="sd">        p0 : list</span>
+<span class="sd">            Initial values as a 3-element list.</span>
+<span class="sd">        **kwargs :</span>
+<span class="sd">            Additional keyword arguments accepted by fit_pixels.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        fit : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fit to the signal data, with same dimensions as the signal array.</span>
+<span class="sd">        pars : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fitted model parameters S0 and E. Dimensions are (x,y,2) or </span>
+<span class="sd">            (x,y,z,2). </span>
+<span class="sd">            </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">FA</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Flip angle (FA) is a required parameter.&#39;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">fit_pixels</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> 
+        <span class="n">model</span><span class="o">=</span><span class="n">pixel_models</span><span class="o">.</span><span class="n">spgr_vfa</span><span class="p">,</span> 
+        <span class="n">xdata</span><span class="o">=</span><span class="n">FA</span><span class="p">,</span>
+        <span class="n">func_init</span><span class="o">=</span><span class="n">pixel_models</span><span class="o">.</span><span class="n">spgr_vfa_init</span><span class="p">,</span>
+        <span class="n">parallel</span><span class="o">=</span><span class="n">parallel</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
+        <span class="n">p0</span><span class="o">=</span><span class="n">p0</span><span class="p">,</span> 
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> 
+    <span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="fit_spgr_vfa_lin">
+<a class="viewcode-back" href="../../generated/api/mdreg.fit_spgr_vfa_lin.html#mdreg.fit_spgr_vfa_lin">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fit_spgr_vfa_lin</span><span class="p">(</span>
+        <span class="n">signal</span><span class="p">:</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> 
+        <span class="n">FA</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> 
+        <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">memdim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+        <span class="n">parallel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">progress_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Linear fit to a variable flip angle model.</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        S(\mathbf{r},\alpha)=S_0(\mathbf{r})\sin{\alpha} \frac{1-e^{-T_R/T_1(\mathbf{r})}}{1-\cos{\alpha}\,e^{-T_R/T_1(\mathbf{r})}}</span>
+
+<span class="sd">    Here :math:`S(\alpha)` is the signal at flip angle :math:`\alpha`, </span>
+<span class="sd">    :math:`S_0` a scaling factor, :math:`T_R` the repetition time and </span>
+<span class="sd">    :math:`T_1` the longitudinal relaxation time. </span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        signal : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Array with signal intensities for different flip angles (FA). </span>
+<span class="sd">            Dimensions are (x,y,FA) or (x,y,z,FA)</span>
+<span class="sd">        FA : array</span>
+<span class="sd">            Flip Angles in degrees (required). This is a 1D array with the same</span>
+<span class="sd">            length as the last dimension of the signal array. Defaults to None.</span>
+<span class="sd">        path : str, optional</span>
+<span class="sd">            Path on disk where to save the results. If no path is provided, the </span>
+<span class="sd">            results are not saved to disk. Defaults to None.</span>
+<span class="sd">        memdim : int</span>
+<span class="sd">            For zarrays, the number of array dimensions to be held in memory at </span>
+<span class="sd">            any one time. This keyword is ignored when the argument is a numpy</span>
+<span class="sd">            array.</span>
+<span class="sd">            Possible values for memdim range from 0 (pixel-by-pixel processing) </span>
+<span class="sd">            to ydata.ndim-1 (process the whole array at once). With memdim=1,</span>
+<span class="sd">            data are loaded and processed row-by-row, with memdim=2 the are </span>
+<span class="sd">            processed slice-by-slice, and so on. Default is 2.</span>
+<span class="sd">        parallel : bool</span>
+<span class="sd">            Option to perform fitting in parallel. This is only available for </span>
+<span class="sd">            zarrays when memdim is provided. </span>
+<span class="sd">        progress_bar: bool</span>
+<span class="sd">            Display a progress bar (default = False).</span>
+<span class="sd">    </span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        fit : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fit to the signal data, with same dimensions as the signal array.</span>
+<span class="sd">        pars : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fitted model parameters S0 and E. Dimensions are (x,y,2) or </span>
+<span class="sd">            (x,y,z,2). </span>
+
+<span class="sd">    Notes:</span>
+
+<span class="sd">        To derive the linear version of the model, the equation can be rewritten </span>
+<span class="sd">        as: </span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            Y(\alpha) = AX(\alpha)+B</span>
+
+<span class="sd">        with the variables defined as:</span>
+<span class="sd">        </span>
+<span class="sd">        .. math::</span>
+
+<span class="sd">            X = S(\alpha/\sin{\alpha};~~~~Y=S(\alpha)\cos{\alpha} / \sin{\alpha}</span>
+
+<span class="sd">        and the constants:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            E=e^{-T_R/T_1};~~~~A=\frac{1}{E};~~~~B=-S_0\frac{1-E}{E}~</span>
+
+<span class="sd">        Plotting :math:`Y(\alpha)` against :math:`X(\alpha)` produces a </span>
+<span class="sd">        straight line with slope :math:`A` and intercept :math:`B`. After </span>
+<span class="sd">        solving for :math:`A, B` these constants can then be used reconstruct </span>
+<span class="sd">        the signal:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            S(\alpha)=\frac{B\sin{\alpha}}{\cos{\alpha}-A}</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">zarr</span><span class="o">.</span><span class="n">Array</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;fit_spgr_vfa_lin is not yet available for zarrays.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">FA</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Flip angle (FA) is a required parameter.&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">fit</span><span class="p">,</span> <span class="n">par</span> <span class="o">=</span> <span class="n">_fit_spgr_vfa_lin_compute</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">FA</span><span class="p">,</span> <span class="n">progress_bar</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;fit&#39;</span><span class="p">),</span> <span class="n">fit</span><span class="p">)</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;pars&#39;</span><span class="p">),</span> <span class="n">par</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span>
+    
+    <span class="k">if</span> <span class="n">memdim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">memdim</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">ndim</span><span class="o">-</span><span class="mi">1</span>
+    
+    <span class="c1"># Dimension of data in memory</span>
+    <span class="k">if</span> <span class="n">memdim</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;memdim cannot be negative.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">memdim</span> <span class="o">&gt;</span> <span class="n">signal</span><span class="o">.</span><span class="n">ndim</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;memdim cannot be larger than signal.ndim-1.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Build stores for outputs</span>
+    <span class="n">fit</span><span class="p">,</span> <span class="n">par</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">_fit_models_init</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Get the shape and number of slice dimensions</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">memdim</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">))</span>
+
+    <span class="c1"># All indices in slice dimensions</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">memdim</span><span class="p">)])</span>
+    
+    <span class="k">if</span> <span class="n">parallel</span><span class="p">:</span>
+        <span class="n">pbar</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">dask</span><span class="o">.</span><span class="n">delayed</span><span class="p">(</span><span class="n">_fit_spgr_vfa_lin_slice</span><span class="p">)(</span>
+                <span class="n">k</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">FA</span><span class="p">,</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span><span class="p">,</span> <span class="n">pbar</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+                <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> 
+                <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Fitting vfa&#39;</span><span class="p">,</span> 
+                <span class="n">disable</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">progress_bar</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">),</span>
+            <span class="p">):</span>
+            <span class="n">pbar</span> <span class="o">=</span> <span class="n">progress_bar</span> <span class="ow">and</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">_fit_spgr_vfa_lin_slice</span><span class="p">(</span>
+                <span class="n">k</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">FA</span><span class="p">,</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span><span class="p">,</span> <span class="n">pbar</span><span class="p">,</span>
+            <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fit_spgr_vfa_lin_slice</span><span class="p">(</span>
+        <span class="n">k</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">FA</span><span class="p">,</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span><span class="p">,</span> <span class="n">progress_bar</span><span class="p">):</span>
+
+    <span class="c1"># Convert flat index to multi-index</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
+
+    <span class="c1"># Load all values for slice z into memory</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="p">)</span>
+    <span class="n">signal_k</span> <span class="o">=</span> <span class="n">signal</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">z</span> <span class="o">+</span> <span class="n">t</span><span class="p">]</span>
+
+    <span class="c1"># Compute</span>
+    <span class="n">fit_k</span><span class="p">,</span> <span class="n">par_k</span> <span class="o">=</span> <span class="n">_fit_spgr_vfa_lin_compute</span><span class="p">(</span><span class="n">signal_k</span><span class="p">,</span> <span class="n">FA</span><span class="p">,</span> <span class="n">progress_bar</span><span class="p">)</span>
+
+    <span class="c1"># Save results for slize z in the zarray</span>
+    <span class="n">fit</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">z</span> <span class="o">+</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">fit_k</span>
+    <span class="n">par</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">z</span> <span class="o">+</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">par_k</span>
+    
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fit_spgr_vfa_lin_compute</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">FA</span><span class="p">,</span> <span class="n">progress_bar</span><span class="p">):</span>
+    
+    <span class="n">FA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">FA</span><span class="p">)</span>
+
+    <span class="c1"># Construct FA array in matching shape to signal data</span>
+    <span class="n">FA_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones_like</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span><span class="o">*</span><span class="n">FA</span>
+    <span class="n">sFA_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">FA_array</span><span class="p">)</span>
+
+    <span class="n">X</span> <span class="o">=</span> <span class="n">signal</span> <span class="o">/</span> <span class="n">sFA_array</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">signal</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">FA_array</span><span class="p">)</span> <span class="o">/</span> <span class="n">sFA_array</span>
+
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">Y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="n">pars</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="n">sFA</span><span class="p">,</span> <span class="n">cFA</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">FA</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">FA</span><span class="p">)</span>
+    <span class="n">ones</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> 
+            <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Fitting VFA model&#39;</span><span class="p">,</span> 
+            <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">progress_bar</span><span class="p">,</span>
+        <span class="p">):</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">ones</span><span class="p">])</span>
+        <span class="n">pars</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">Y</span><span class="p">[</span><span class="n">i</span><span class="p">,:],</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="mi">0</span> <span class="ow">in</span> <span class="p">(</span><span class="n">cFA</span> <span class="o">-</span> <span class="n">pars</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">fit</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fit</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">pars</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">sFA</span> <span class="o">/</span> <span class="p">(</span><span class="n">cFA</span> <span class="o">-</span> <span class="n">pars</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">smax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">,:])</span>
+        <span class="n">fit</span><span class="p">[</span><span class="n">i</span><span class="p">,:][</span><span class="n">fit</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">&gt;</span> <span class="n">smax</span><span class="p">]</span> <span class="o">=</span> <span class="n">smax</span>
+
+    <span class="n">fit</span><span class="p">[</span><span class="n">fit</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">fit</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">isnan</span><span class="p">(</span><span class="n">fit</span><span class="p">)]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Convert to T1 and S0</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">pars</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">pars</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">S0</span> <span class="o">=</span> <span class="o">-</span><span class="n">B</span><span class="o">/</span><span class="p">(</span><span class="n">A</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="mi">1</span><span class="o">/</span><span class="n">A</span>
+    <span class="n">pars</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">S0</span>
+    <span class="n">pars</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">E</span>
+    
+    <span class="k">return</span> <span class="n">fit</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">),</span> <span class="n">pars</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">2</span><span class="p">,))</span>
+
+
+
+
+
+
+<div class="viewcode-block" id="fit_2cm_lin">
+<a class="viewcode-back" href="../../generated/api/mdreg.fit_2cm_lin.html#mdreg.fit_2cm_lin">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">fit_2cm_lin</span><span class="p">(</span>
+        <span class="n">signal</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">zarr</span><span class="o">.</span><span class="n">Array</span><span class="p">],</span> 
+        <span class="n">aif</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">baseline</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">memdim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+        <span class="n">parallel</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">progress_bar</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">zarr</span><span class="o">.</span><span class="n">Array</span><span class="p">],</span> <span class="n">Union</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">zarr</span><span class="o">.</span><span class="n">Array</span><span class="p">]]:</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Linearised 2-compartment model fit</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        signal : numpy.ndarray | zarr.Array </span>
+<span class="sd">            Array with signal intensities at </span>
+<span class="sd">            different times. Dimensions are (x,y,t) or (x,y,z,t)</span>
+<span class="sd">        aif : numpy.ndarray</span>
+<span class="sd">            Arterial input function. 1D array of input artery signal </span>
+<span class="sd">            intensities, length equal to the number of time points in the </span>
+<span class="sd">            signal data.</span>
+<span class="sd">        time : numpy.ndarray</span>
+<span class="sd">            Timepoints of the signal data</span>
+<span class="sd">        baseline : int</span>
+<span class="sd">            Baseline. Number of time points to use for the baseline signal. </span>
+<span class="sd">            Default is 1.</span>
+<span class="sd">        path : str, optional</span>
+<span class="sd">            Path on disk where to save the results. If no path is provided, the </span>
+<span class="sd">            results are not saved to disk. Defaults to None.</span>
+<span class="sd">        memdim : int</span>
+<span class="sd">            For zarrays, the number of array dimensions to be held in memory at </span>
+<span class="sd">            any one time. This keyword is ignored when the argument is a numpy</span>
+<span class="sd">            array.</span>
+<span class="sd">            Possible values for memdim range from 0 (pixel-by-pixel processing) </span>
+<span class="sd">            to ydata.ndim-1 (process the whole array at once). With memdim=1,</span>
+<span class="sd">            data are loaded and processed row-by-row, with memdim=2 the are </span>
+<span class="sd">            processed slice-by-slice, and so on. Default is 2. </span>
+<span class="sd">        parallel : bool</span>
+<span class="sd">            Option to perform fitting in parallel. This is only available for </span>
+<span class="sd">            zarrays when memdim is provided.</span>
+<span class="sd">        progress_bar : bool</span>
+<span class="sd">            Set to True to display a progress bar during the computations. This </span>
+<span class="sd">            is ignored if parallel=True.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        fit : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fit to the signal data with same dimensions as the signal array.</span>
+<span class="sd">        pars : numpy.ndarray | zarr.Array</span>
+<span class="sd">            Fitted model parameters Fb, Tb, PS, Te. Dimensions are (x,y,4) or </span>
+<span class="sd">            (x,y,z,4). </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Check arguments</span>
+    <span class="k">if</span> <span class="n">aif</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;aif is a required parameter.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">time</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Time is a required parameter.&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parallel</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">progress_bar</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;A progress bar cannot be shown when parallel=True. &quot;</span>
+                <span class="s2">&quot;Set parallel=False or progress_bar=False. &quot;</span>
+            <span class="p">)</span>
+    
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">fit</span><span class="p">,</span> <span class="n">par</span> <span class="o">=</span> <span class="n">_fit_2cm_lin_compute</span><span class="p">(</span>
+            <span class="n">signal</span><span class="p">,</span> <span class="n">aif</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">baseline</span><span class="p">,</span> <span class="n">progress_bar</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;fit&#39;</span><span class="p">),</span> <span class="n">fit</span><span class="p">)</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;pars&#39;</span><span class="p">),</span> <span class="n">par</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span>
+    
+    <span class="k">if</span> <span class="n">memdim</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">memdim</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">ndim</span><span class="o">-</span><span class="mi">1</span>
+    
+    <span class="c1"># Dimension of data in memory</span>
+    <span class="k">if</span> <span class="n">memdim</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;memdim cannot be negative.&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">memdim</span> <span class="o">&gt;</span> <span class="n">signal</span><span class="o">.</span><span class="n">ndim</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;memdim cannot be larger than signal.ndim-1.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Build stores for outputs</span>
+    <span class="n">fit</span><span class="p">,</span> <span class="n">par</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">_fit_models_init</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+
+    <span class="c1"># Get the shape and number of slice dimensions</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">memdim</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">shape</span><span class="p">))</span>
+
+    <span class="c1"># All indices in slice dimensions</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">([</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">memdim</span><span class="p">)])</span>
+    
+    <span class="k">if</span> <span class="n">parallel</span><span class="p">:</span>
+        <span class="n">pbar</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">tasks</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">dask</span><span class="o">.</span><span class="n">delayed</span><span class="p">(</span><span class="n">_fit_2cm_lin_slice</span><span class="p">)(</span>
+                <span class="n">k</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">aif</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">baseline</span><span class="p">,</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span><span class="p">,</span> <span class="n">pbar</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">dask</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="o">*</span><span class="n">tasks</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+                <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> 
+                <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Fitting 2cm&#39;</span><span class="p">,</span> 
+                <span class="n">disable</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">progress_bar</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">),</span>
+            <span class="p">):</span>
+            <span class="n">pbar</span> <span class="o">=</span> <span class="n">progress_bar</span> <span class="ow">and</span> <span class="p">(</span><span class="n">n</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">_fit_2cm_lin_slice</span><span class="p">(</span>
+                <span class="n">k</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">aif</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">baseline</span><span class="p">,</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span><span class="p">,</span> <span class="n">pbar</span><span class="p">,</span>
+            <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span></div>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fit_2cm_lin_slice</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">signal</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">aif</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">baseline</span><span class="p">,</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span><span class="p">,</span> 
+                 <span class="n">progress_bar</span><span class="p">):</span>
+
+    <span class="c1"># Convert flat index to multi-index</span>
+    <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
+
+    <span class="c1"># Load all values for slice z into memory</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="p">)</span>
+    <span class="n">signal_k</span> <span class="o">=</span> <span class="n">signal</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">z</span> <span class="o">+</span> <span class="n">t</span><span class="p">]</span>
+
+    <span class="c1"># Compute</span>
+    <span class="n">fit_k</span><span class="p">,</span> <span class="n">par_k</span> <span class="o">=</span> <span class="n">_fit_2cm_lin_compute</span><span class="p">(</span>
+        <span class="n">signal_k</span><span class="p">,</span> <span class="n">aif</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">baseline</span><span class="p">,</span> <span class="n">progress_bar</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Save results for slize z in the zarray</span>
+    <span class="n">fit</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">z</span> <span class="o">+</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">fit_k</span>
+    <span class="n">par</span><span class="p">[</span><span class="n">p</span> <span class="o">+</span> <span class="n">z</span> <span class="o">+</span> <span class="n">t</span><span class="p">]</span> <span class="o">=</span> <span class="n">par_k</span>
+
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_fit_2cm_lin_compute</span><span class="p">(</span><span class="n">signal</span><span class="p">,</span> <span class="n">aif</span><span class="p">,</span> <span class="n">time</span><span class="p">,</span> <span class="n">baseline</span><span class="p">,</span> <span class="n">progress_bar</span><span class="p">):</span>
+
+    <span class="c1"># Reshape to 2D (x,t)</span>
+    <span class="n">shape</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">shape</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+    <span class="n">S0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">signal</span><span class="p">[:,:</span><span class="n">baseline</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ca</span> <span class="o">=</span> <span class="n">aif</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">aif</span><span class="p">[:</span><span class="n">baseline</span><span class="p">])</span>
+    
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="mi">4</span><span class="p">))</span>
+    <span class="n">A</span><span class="p">[:,</span><span class="mi">2</span><span class="p">],</span> <span class="n">A</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">_ddint</span><span class="p">(</span><span class="n">ca</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">par</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span>
+            <span class="nb">range</span><span class="p">(</span><span class="n">signal</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> 
+            <span class="n">desc</span><span class="o">=</span><span class="s1">&#39;Fitting 2-comp model&#39;</span><span class="p">,</span> 
+            <span class="n">disable</span><span class="o">=</span><span class="ow">not</span> <span class="n">progress_bar</span><span class="p">,</span>
+        <span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">signal</span><span class="p">[</span><span class="n">x</span><span class="p">,:]</span> <span class="o">-</span> <span class="n">S0</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
+        <span class="n">ctii</span><span class="p">,</span> <span class="n">cti</span> <span class="o">=</span> <span class="n">_ddint</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">time</span><span class="p">)</span>
+        <span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">ctii</span>
+        <span class="n">A</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">cti</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">rcond</span><span class="o">=</span><span class="kc">None</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> 
+        <span class="n">fit</span><span class="p">[</span><span class="n">x</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">S0</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">A</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">A</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">A</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">A</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span>
+        <span class="n">par</span><span class="p">[</span><span class="n">x</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">_2cm_lin_params</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+    <span class="c1"># Apply bounds</span>
+    <span class="n">smax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="n">signal</span><span class="p">)</span>
+    <span class="n">fit</span><span class="p">[</span><span class="n">fit</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">fit</span><span class="p">[</span><span class="n">fit</span><span class="o">&gt;</span><span class="mi">2</span><span class="o">*</span><span class="n">smax</span><span class="p">]</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">smax</span>
+
+    <span class="c1"># Return in original shape</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">fit</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">)</span>
+    <span class="n">par</span> <span class="o">=</span> <span class="n">par</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span><span class="p">,))</span>
+
+    <span class="k">return</span> <span class="n">fit</span><span class="p">,</span> <span class="n">par</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_ddint</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="n">ci</span> <span class="o">=</span> <span class="n">cumulative_trapezoid</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">cii</span> <span class="o">=</span> <span class="n">cumulative_trapezoid</span><span class="p">(</span><span class="n">ci</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cii</span><span class="p">,</span> <span class="n">ci</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_2cm_lin_params</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">gamma</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+    <span class="n">Fp</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+    
+    <span class="k">if</span> <span class="n">alpha</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> 
+        <span class="k">if</span> <span class="n">beta</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">Fp</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">Fp</span><span class="p">,</span> <span class="mi">1</span><span class="o">/</span><span class="n">beta</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+
+    <span class="n">nom</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">alpha</span>
+    <span class="n">det</span> <span class="o">=</span> <span class="n">beta</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">4</span><span class="o">*</span><span class="n">alpha</span>
+    <span class="k">if</span> <span class="n">det</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="p">:</span>
+        <span class="n">Tp</span> <span class="o">=</span> <span class="n">beta</span><span class="o">/</span><span class="n">nom</span>
+        <span class="n">Te</span> <span class="o">=</span> <span class="n">Tp</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">det</span><span class="p">)</span>
+        <span class="n">Tp</span> <span class="o">=</span> <span class="p">(</span><span class="n">beta</span> <span class="o">-</span> <span class="n">root</span><span class="p">)</span><span class="o">/</span><span class="n">nom</span>
+        <span class="n">Te</span> <span class="o">=</span> <span class="p">(</span><span class="n">beta</span> <span class="o">+</span> <span class="n">root</span><span class="p">)</span><span class="o">/</span><span class="n">nom</span>
+
+    <span class="k">if</span> <span class="n">Te</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">PS</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">else</span><span class="p">:</span>   
+        <span class="k">if</span> <span class="n">Fp</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">PS</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">T</span> <span class="o">=</span> <span class="n">gamma</span><span class="o">/</span><span class="p">(</span><span class="n">alpha</span><span class="o">*</span><span class="n">Fp</span><span class="p">)</span> 
+            <span class="n">PS</span> <span class="o">=</span> <span class="n">Fp</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="n">Tp</span><span class="p">)</span><span class="o">/</span><span class="n">Te</span>   
+    
+    <span class="k">return</span> <span class="p">[</span><span class="n">Fp</span><span class="p">,</span> <span class="n">Tp</span><span class="p">,</span> <span class="n">PS</span><span class="p">,</span> <span class="n">Te</span><span class="p">]</span>
+
+
+
+
+</pre></div>
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2025, mdreg maintainers.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
