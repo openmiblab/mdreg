@@ -148,7 +148,7 @@ def fit(moving,
 
         # Fit deformation
         if verbose > 0:
-            print(f'Fitting deformation field (iteration {it})')
+            print(f'Iteration {it}: fitting deformation fields')
         coreg_curr = io._copy(coreg, path, 'tmp')
         vals = _coreg_series(moving, fit, **fit_coreg)
         coreg, transfo = vals[:2]
