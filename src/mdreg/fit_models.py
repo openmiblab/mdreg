@@ -808,7 +808,7 @@ def fit_2cm_lin(
         path=None,
         memdim=2, 
         parallel=False,
-        progress_bar=False,
+        progress_bar=True,
 
     ) -> Tuple[Union[np.ndarray, zarr.Array], Union[np.ndarray, zarr.Array]]:
     
@@ -860,6 +860,12 @@ def fit_2cm_lin(
         raise ValueError('aif is a required parameter.')
     if time is None:
         raise ValueError('Time is a required parameter.')
+    if parallel:
+        if progress_bar:
+            raise ValueError(
+                "A progress bar cannot be shown when parallel=True. "
+                "Set parallel=False or progress_bar=False. "
+            )
     
     if isinstance(signal, np.ndarray):
         fit, par = _fit_2cm_lin_compute(
