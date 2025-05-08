@@ -28,8 +28,8 @@ def defaults():
 def coreg_series(
         moving: Union[np.ndarray, zarr.Array], 
         fixed: Union[np.ndarray, zarr.Array], 
-        parallel=True, 
-        progress_bar=False, 
+        parallel=False, 
+        progress_bar=True, 
         path=None, 
         name='coreg',
         **kwargs,
@@ -69,6 +69,12 @@ def coreg_series(
         field will have dimensions (x,y,t,2) and (x,y,z,t,3), respectively. 
         The displacement vectors are measured in voxel units. 
     """
+    if parallel:
+        if progress_bar:
+            raise ValueError(
+                "A progress bar cannot be shown when parallel=True. "
+                "Set parallel=False or progress_bar=False. "
+            )
     coreg = io._copy(moving, path, name)
     defo = io._defo(moving, path, name=name+'_defo')
 

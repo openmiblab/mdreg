@@ -348,7 +348,7 @@ def _fetch_dataset(dataset, ext):
         if not os.path.exists(extracted):
             with zipfile.ZipFile(datafile, 'r') as z:
                 z.extractall(extracted)
-        return zarr.open(extracted, mode='r')
+        return zarr.open(extracted, mode='r') # TODO: fetch should return just a filepath to extracted zarr
 
 
 def _download(dataset, ext):
